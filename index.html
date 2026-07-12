@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripath Labs — An independent AI product studio</title>
+<meta name="description" content="Tripath Labs is a one-builder software studio shipping AI-first products end to end: SiteBot, FreelancerOS, SMB OS, ChatCommerce OS, NextPlay Pro, ShelfScore and more. Every product is for sale — license, white-label, or acquire.">
+<meta property="og:title" content="Tripath Labs — An independent AI product studio">
+<meta property="og:description" content="Eleven AI-first products, built end to end by one builder. License, white-label, or acquire.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>▲</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Sora:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0B0C10;
+  --panel:#11131A;
+  --panel-2:#151823;
+  --line:rgba(242,237,228,.09);
+  --cream:#F2EDE4;
+  --muted:#9B958A;
+  --amber:#F7A83B;
+  --coral:#F06449;
+  --grad:linear-gradient(96deg,#F7A83B 0%,#F06449 55%,#C86DD7 110%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--cream);
+  font-family:'Sora',sans-serif;font-weight:300;
+  font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--amber);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+.mono{font-family:'Space Mono',monospace}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* grain */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
+}
+
+/* nav */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  background:rgba(11,12,16,.72);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.15rem;letter-spacing:.01em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.82rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--cream)}
+.btn{
+  display:inline-block;padding:10px 22px;border-radius:100px;
+  font-size:.82rem;font-weight:500;letter-spacing:.02em;
+  background:var(--cream);color:var(--ink);transition:transform .2s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(247,168,59,.25)}
+.btn.ghost{background:transparent;color:var(--cream);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--amber);box-shadow:none}
+
+/* hero */
+header{position:relative;padding:180px 0 90px;overflow:hidden}
+.mesh{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(560px 420px at 78% 8%,rgba(247,168,59,.13),transparent 65%),
+    radial-gradient(640px 480px at 12% 92%,rgba(200,109,215,.09),transparent 65%),
+    radial-gradient(480px 380px at 45% 45%,rgba(240,100,73,.06),transparent 65%);
+}
+.eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.22em;color:var(--amber);text-transform:uppercase;margin-bottom:26px}
+h1{
+  font-family:'Fraunces',serif;font-optical-sizing:auto;font-weight:400;
+  font-size:clamp(2.6rem,6.4vw,4.9rem);line-height:1.06;letter-spacing:-.015em;
+  max-width:15ch;
+}
+h1 em{font-style:italic;font-weight:340}
+.lede{max-width:52ch;margin:30px 0 40px;color:var(--muted);font-size:1.06rem}
+.lede strong{color:var(--cream);font-weight:500}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+
+/* reveal animation */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* stats */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:34px 20px;border-left:1px solid var(--line)}
+.stat:first-child{border-left:none}
+.stat b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:2.1rem;line-height:1.1}
+.stat span{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+/* sections */
+section{padding:110px 0}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:54px;flex-wrap:wrap}
+h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,3.6vw,2.8rem);letter-spacing:-.01em;line-height:1.15}
+.sec-head p{color:var(--muted);max-width:38ch;font-size:.94rem}
+
+/* flagship bento */
+.bento{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{
+  position:relative;background:var(--panel);border:1px solid var(--line);
+  border-radius:18px;padding:38px 34px;overflow:hidden;
+  transition:transform .25s ease,border-color .25s ease;
+}
+.card:hover{transform:translateY(-4px);border-color:rgba(247,168,59,.4)}
+.card.wide{grid-column:1/-1}
+.card .num{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--amber);letter-spacing:.18em}
+.card h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.7rem;margin:14px 0 10px}
+.card p{color:var(--muted);font-size:.94rem;max-width:56ch}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 26px}
+.tag{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.06em;padding:5px 11px;border:1px solid var(--line);border-radius:100px;color:var(--muted)}
+.card-cta{font-size:.85rem;font-weight:500;color:var(--amber)}
+.card-cta::after{content:" →";transition:margin .2s}
+.card:hover .card-cta::after{margin-left:5px}
+.card .glow{position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;filter:blur(70px);opacity:.16;pointer-events:none}
+
+/* product index */
+.index-sec{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:64px 1fr auto auto 40px;gap:22px;align-items:center;
+  padding:26px 10px;border-top:1px solid var(--line);transition:background .2s;
+}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row:hover{background:rgba(242,237,228,.025)}
+.row .n{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--muted)}
+.row h4{font-family:'Fraunces',serif;font-weight:500;font-size:1.18rem;margin-bottom:3px}
+.row .d{color:var(--muted);font-size:.86rem}
+.row .cat{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.chip{font-family:'Space Mono',monospace;font-size:.64rem;letter-spacing:.08em;padding:5px 12px;border-radius:100px;white-space:nowrap}
+.chip.live{background:rgba(60,190,120,.12);color:#5AD692;border:1px solid rgba(90,214,146,.3)}
+.chip.beta{background:rgba(247,168,59,.1);color:var(--amber);border:1px solid rgba(247,168,59,.3)}
+.chip.lab{background:rgba(155,149,138,.1);color:var(--muted);border:1px solid var(--line)}
+.row .go{font-size:1.1rem;color:var(--muted);text-align:right;transition:color .2s,transform .2s}
+a.row:hover .go{color:var(--amber);transform:translateX(4px)}
+
+/* work with */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:border-color .25s}
+.tile:hover{border-color:rgba(247,168,59,.4)}
+.tile .k{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--amber);letter-spacing:.18em}
+.tile h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.35rem;margin:14px 0 10px}
+.tile p{color:var(--muted);font-size:.9rem}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
+.about-grid p{color:var(--muted);margin-bottom:18px}
+.about-grid p strong{color:var(--cream);font-weight:500}
+.principles li{
+  list-style:none;padding:16px 0;border-top:1px solid var(--line);
+  display:flex;gap:16px;align-items:baseline;font-size:.92rem;
+}
+.principles li:last-child{border-bottom:1px solid var(--line)}
+.principles .mono{color:var(--amber);font-size:.7rem}
+
+/* contact */
+.contact{text-align:center;padding:130px 0}
+.contact h2{font-size:clamp(2.2rem,4.5vw,3.4rem);max-width:20ch;margin:0 auto 24px}
+.contact p{color:var(--muted);max-width:46ch;margin:0 auto 40px}
+
+footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.8rem}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:var(--muted)}footer a:hover{color:var(--cream)}
+
+@media(max-width:900px){
+  .stats-in{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(3){border-left:none}
+  .bento,.tiles{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:40px}
+  .row{grid-template-columns:1fr auto;grid-template-areas:"main chip" "meta go"}
+  .row .n{display:none}
+  .row .cat{display:none}
+  .nav-links a:not(.btn){display:none}
+  header{padding-top:140px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#">Tripath<span> Labs</span></a>
+    <div class="nav-links">
+      <a href="#flagship">Flagship</a>
+      <a href="#products">All products</a>
+      <a href="#work">Work with us</a>
+      <a href="#about">About</a>
+      <a class="btn" href="mailto:kaustubh.trt+labs@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="mesh"></div>
+  <div class="wrap">
+    <p class="eyebrow rv">An independent AI product studio · Built in India, sold worldwide</p>
+    <h1 class="rv">Software built whole. <em class="grad-text">Ready to be yours.</em></h1>
+    <p class="lede rv">Tripath Labs designs, builds, tests and ships complete products — AI agents, SaaS platforms and mobile apps. <strong>Every one of them is commercially available:</strong> use it, license it, white-label it, or buy it outright.</p>
+    <div class="hero-ctas rv">
+      <a class="btn" href="#products">Browse the catalogue</a>
+      <a class="btn ghost" href="#work">Licensing &amp; acquisition</a>
+    </div>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="wrap stats-in">
+    <div class="stat rv"><b>11</b><span>Products built end to end</span></div>
+    <div class="stat rv"><b>8</b><span>Live public deployments</span></div>
+    <div class="stat rv"><b>300+</b><span>Automated tests, green</span></div>
+    <div class="stat rv"><b>1</b><span>Builder. Full stack.</span></div>
+  </div>
+</div>
+
+<section id="flagship">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Flagship products</h2>
+      <p>Revenue-ready platforms with live demos, deploy runbooks and sales kits included.</p>
+    </div>
+    <div class="bento">
+      <a class="card wide rv" href="https://sitebot-demo.onrender.com" target="_blank" rel="noopener">
+        <div class="glow" style="background:var(--amber)"></div>
+        <span class="num">01 / AI AGENTS</span>
+        <h3>SiteBot</h3>
+        <p>A white-label AI chat agent for any business website. Point it at a site, it learns every page and answers customers 24/7 — plus a TeamBrain mode that turns internal documents into a private staff assistant. Sold as a productized service with an agency reseller license.</p>
+        <div class="tags"><span class="tag">Embeddable widget</span><span class="tag">Site crawler</span><span class="tag">TeamBrain B2B mode</span><span class="tag">Agency license</span></div>
+        <span class="card-cta">Try the live demo</span>
+      </a>
+      <a class="card rv" href="https://kaustubhtripathi-code.github.io/freelanceros-site/" target="_blank" rel="noopener">
+        <div class="glow" style="background:var(--coral)"></div>
+        <span class="num">02 / SAAS</span>
+        <h3>FreelancerOS</h3>
+        <p>A ten-module business suite for independent professionals — invoices, CRM, proposals, contracts, time tracking and an AI layer that drafts, summarizes and categorizes with your own key.</p>
+        <div class="tags"><span class="tag">10 modules</span><span class="tag">BYOK AI</span><span class="tag">PDF everything</span></div>
+        <span class="card-cta">See the platform</span>
+      </a>
+      <a class="card rv" href="https://kaustubhtripathi-code.github.io/chatcommerce-site/" target="_blank" rel="noopener">
+        <div class="glow" style="background:#C86DD7"></div>
+        <span class="num">03 / SAAS</span>
+        <h3>ChatCommerce OS</h3>
+        <p>WhatsApp storefronts for D2C brands: catalogue sync, cart and checkout inside the chat, UPI payments, cart recovery and Hindi + English out of the box.</p>
+        <div class="tags"><span class="tag">WhatsApp Cloud API</span><span class="tag">UPI checkout</span><span class="tag">Multi-tenant</span></div>
+        <span class="card-cta">See the platform</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="index-sec" id="products">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>The full catalogue</h2>
+      <p>Every product in the studio, from live deployments to what's currently on the bench.</p>
+    </div>
+    <div class="rv">
+      <a class="row" href="https://sitebot-demo.onrender.com" target="_blank" rel="noopener">
+        <span class="n">01</span>
+        <div><h4>SiteBot</h4><div class="d">AI support agent for business websites, white-label ready</div></div>
+        <span class="cat">AI · B2B</span><span class="chip live">Live demo</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/freelanceros-site/" target="_blank" rel="noopener">
+        <span class="n">02</span>
+        <div><h4>FreelancerOS</h4><div class="d">The business operating system for independent professionals</div></div>
+        <span class="cat">SaaS</span><span class="chip beta">Early access</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/smb-os-site/" target="_blank" rel="noopener">
+        <span class="n">03</span>
+        <div><h4>SMB OS</h4><div class="d">Invoicing that speaks your market's tax language — GST/UPI, M-Pesa, 1099/Stripe, six languages</div></div>
+        <span class="cat">SaaS</span><span class="chip beta">Early access</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/chatcommerce-site/" target="_blank" rel="noopener">
+        <span class="n">04</span>
+        <div><h4>ChatCommerce OS</h4><div class="d">WhatsApp-native storefronts and UPI checkout for D2C brands</div></div>
+        <span class="cat">SaaS</span><span class="chip beta">Early access</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://nextplay-pro.onrender.com" target="_blank" rel="noopener">
+        <span class="n">05</span>
+        <div><h4>NextPlay Pro</h4><div class="d">Personal game recommendations with honest price verdicts</div></div>
+        <span class="cat">Consumer</span><span class="chip live">Live</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/shelfscore-site/" target="_blank" rel="noopener">
+        <span class="n">06</span>
+        <div><h4>ShelfScore</h4><div class="d">Scan any food product — barcode, label or whole receipt — for a personalized health score</div></div>
+        <span class="cat">Android</span><span class="chip beta">Waitlist</span><span class="go">→</span>
+      </a>
+      <a class="row" href="mailto:kaustubh.trt+labs@gmail.com?subject=GlowScan">
+        <span class="n">07</span>
+        <div><h4>GlowScan</h4><div class="d">AI skin analysis from a single selfie — routine, products, score. Photos never stored.</div></div>
+        <span class="cat">Android</span><span class="chip beta">Private beta</span><span class="go">→</span>
+      </a>
+      <a class="row" href="mailto:kaustubh.trt+labs@gmail.com?subject=CartCompare">
+        <span class="n">08</span>
+        <div><h4>CartCompare</h4><div class="d">Live quick-commerce price comparison with a fee-aware basket optimizer</div></div>
+        <span class="cat">Android</span><span class="chip lab">In the lab</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/studio-stack/" target="_blank" rel="noopener">
+        <span class="n">09</span>
+        <div><h4>ScribeGlass Pro</h4><div class="d">Local-first AI meeting notes — on-device transcription, your notes never leave your machine</div></div>
+        <span class="cat">Desktop</span><span class="chip beta">Early access</span><span class="go">→</span>
+      </a>
+      <a class="row" href="https://kaustubhtripathi-code.github.io/freelanceros-site/" target="_blank" rel="noopener">
+        <span class="n">10</span>
+        <div><h4>Snapline</h4><div class="d">Fast screenshot capture and annotation for Windows — included with every FreelancerOS plan</div></div>
+        <span class="cat">Desktop</span><span class="chip beta">With FreelancerOS</span><span class="go">→</span>
+      </a>
+      <a class="row" href="mailto:kaustubh.trt+labs@gmail.com?subject=AI%20OS">
+        <span class="n">11</span>
+        <div><h4>AI OS</h4><div class="d">A personal AI operating system — give goals to agents, not clicks to apps</div></div>
+        <span class="cat">AI · Platform</span><span class="chip lab">In the lab</span><span class="go">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <h2>Every product here is for sale</h2>
+      <p>Three ways to take something from this catalogue and make it yours.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile rv">
+        <span class="k">A</span>
+        <h3>Use it</h3>
+        <p>Subscribe to the live platforms or join an early-access waitlist. Pilots for teams start small and deploy in days, not quarters.</p>
+      </div>
+      <div class="tile rv">
+        <span class="k">B</span>
+        <h3>White-label it</h3>
+        <p>Agencies resell SiteBot and other products under their own brand — deploy runbooks, sales decks and demo environments included.</p>
+      </div>
+      <div class="tile rv">
+        <span class="k">C</span>
+        <h3>Acquire it</h3>
+        <p>Each product is a clean, tested, documented codebase with its own marketing kit. Serious acquisition conversations are welcome.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="border-top:1px solid var(--line)">
+  <div class="wrap about-grid">
+    <div class="rv">
+      <h2 style="margin-bottom:26px">One builder,<br>the whole stack.</h2>
+      <p>Tripath Labs is the product studio of <strong>Kaustubh Tripathi</strong> — one builder shipping complete software: idea, architecture, code, tests, deployment, and the marketing kit to sell it.</p>
+      <p>The catalogue spans AI agents, B2B SaaS, consumer web and native Android — built AI-first, verified end to end, and designed from day one to be sold, licensed or acquired.</p>
+    </div>
+    <ul class="principles rv">
+      <li><span class="mono">01</span>Shipped beats perfect. Every product here runs.</li>
+      <li><span class="mono">02</span>Tests before claims — 300+ automated checks stay green.</li>
+      <li><span class="mono">03</span>Privacy is a feature: local-first and never-stored by design.</li>
+      <li><span class="mono">04</span>Built to hand over — clean repos, runbooks, sales kits.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="contact" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <h2 class="rv">Want one of these <em class="grad-text" style="font-style:italic">working for you?</em></h2>
+    <p class="rv">Pilots, white-label licensing, resale partnerships or acquisitions — one email starts the conversation.</p>
+    <a class="btn rv" href="mailto:kaustubh.trt+labs@gmail.com">kaustubh.trt+labs@gmail.com</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Tripath Labs · Built in India, sold worldwide</span>
+    <span><a href="https://github.com/kaustubhtripathi-code" target="_blank" rel="noopener">GitHub</a> · <a href="mailto:kaustubh.trt+labs@gmail.com">Contact</a></span>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*70+'ms';
+  if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');else io.observe(el);
+});
+</script>
+</body>
+</html>
