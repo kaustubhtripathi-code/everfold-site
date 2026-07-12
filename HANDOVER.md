@@ -3,7 +3,7 @@
 Read this first. Built 2026-07-12 (one session: named the company, built the site, deck, PDF, pitch film).
 
 ## What this is
-**Everfold Labs** is Kaustubh's company/umbrella brand over all 12 sellable products. Name = ever + fold ("value that keeps multiplying") — 3rd rename in one day (Tripath Labs → Orrery Labs → Everfold Labs), collision-checked clean (rejected for collisions: Tripath, Handbuilt, Shipwright, Soloforge, Adyant, Tenfold, Manyfold, Northbound, Quiver).
+**Everfold Labs** is Kaustubh's company/umbrella brand over all 13 sellable products (was 12; **Personae** added 2026-07-12 — brand-owned AI creators as a service, flagship Naina Rao, links to naina-site). Name = ever + fold ("value that keeps multiplying") — 3rd rename in one day (Tripath Labs → Orrery Labs → Everfold Labs), collision-checked clean (rejected for collisions: Tripath, Handbuilt, Shipwright, Soloforge, Adyant, Tenfold, Manyfold, Northbound, Quiver).
 
 - **LIVE:** https://kaustubhtripathi-code.github.io/everfold-site/ (public repo `kaustubhtripathi-code/everfold-site`, Pages legacy build, main branch, root). Repo was renamed twice — old Pages paths do NOT redirect.
 - **Deploy = push to main.** Local preview: launch config `everfold-site` (python http.server :8178) in `~/.claude/.claude/launch.json`.
@@ -11,9 +11,9 @@ Read this first. Built 2026-07-12 (one session: named the company, built the sit
 ## Files
 | File | What |
 |---|---|
-| `index.html` | Homepage: hero, stats, flagship bento (SiteBot, Sneh, FreelancerOS, ChatCommerce), 12-row product catalogue (every row links to a LIVE site), mission tiles, Founders, About, contact. Self-contained; only external dep = Google Fonts. |
+| `index.html` | Homepage: hero, stats (**13 products / 10 live**), flagship bento (SiteBot, Sneh, FreelancerOS, ChatCommerce, **Personae**), 13-row product catalogue (every row links to a LIVE site), mission tiles, Founders, About, contact. Self-contained; only external dep = Google Fonts. Catalogue rows are auto-renumbered by a python one-liner (regex on `<span class="n">`) — re-run after adding a row. |
 | `pitch.html` | Investor page: pitch film embed, why-now tiles, founders, the ask. |
-| `deck.html` | 12-slide HTML investor deck. ←/→ navigate, P = print (print CSS = 1 slide/page). |
+| `deck.html` | **13-slide** HTML investor deck. ←/→ navigate, P = print (print CSS = 1 slide/page). Adding/removing a slide: re-run the renumber (footer page-nums = slide position `NN / 13`; kicker section-nums = sequential `NN · Label`) — a python regex pass, see the 2026-07-12 Personae commit. |
 | `assets/Everfold-Investor-Deck.pdf` | PDF export of deck.html. Regenerate after deck edits: `msedge --headless=new --disable-gpu --no-pdf-header-footer --landscape --print-to-pdf=<out> --virtual-time-budget=15000 file:///C:/dev/everfold-site/deck.html` |
 | `assets/everfold-pitch.mp4` | 68s 1080p Remotion pitch film (music + fonts baked). |
 | `products/{glowscan,cartcompare,scribeglass,ai-os}/index.html` | Product landing pages for products with no site of their own. glowscan = built here (original). The other three are COPIES of their kits' landings (CartCompare `site/index.html`, scribeglass-pro `marketing/index.html`, AI Os `marketing/website/index.html`) — when a source kit changes, re-copy + push. |
