@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everfold Labs — Investor Deck</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='14' y='62' width='72' height='12' rx='6' fill='%23F06449'/><rect x='24' y='42' width='52' height='12' rx='6' fill='%23F7A83B'/><rect x='34' y='22' width='32' height='12' rx='6' fill='%23F2EDE4'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Sora:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B0C10;--panel:#11131A;--line:rgba(242,237,228,.1);--cream:#F2EDE4;--muted:#9B958A;--amber:#F7A83B;--coral:#F06449;--grad:linear-gradient(96deg,#F7A83B,#F06449 55%,#C86DD7 110%)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--ink);color:var(--cream);font-family:'Sora',sans-serif;font-weight:300;line-height:1.55}
+.mono{font-family:'Space Mono',monospace}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.slide{width:100vw;height:100vh;display:none;flex-direction:column;justify-content:center;padding:7vh 9vw;position:relative;overflow:hidden}
+.slide.active{display:flex}
+.kicker{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.24em;color:var(--amber);text-transform:uppercase;margin-bottom:22px}
+h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(2.4rem,5.6vw,4.6rem);line-height:1.06;letter-spacing:-.015em;max-width:22ch}
+h1 em,h2 em{font-style:italic}
+h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.1;margin-bottom:28px;max-width:24ch}
+.sub{color:var(--muted);font-size:1.05rem;max-width:60ch;margin-top:22px}
+.sub strong,li strong{color:var(--cream);font-weight:500}
+ul.pts{list-style:none;margin-top:8px;max-width:72ch}
+ul.pts li{padding:14px 0;border-top:1px solid var(--line);color:var(--muted);font-size:1rem;display:flex;gap:16px}
+ul.pts li:last-child{border-bottom:1px solid var(--line)}
+ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
+.grid{display:grid;gap:14px;margin-top:8px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.cell{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 20px}
+.cell h4{font-family:'Fraunces',serif;font-weight:500;font-size:1.08rem;margin-bottom:4px}
+.cell .d{color:var(--muted);font-size:.8rem}
+.cell .c{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;color:var(--amber);text-transform:uppercase}
+.chip{display:inline-block;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;padding:3px 9px;border-radius:100px;margin-top:8px}
+.live{background:rgba(60,190,120,.12);color:#5AD692;border:1px solid rgba(90,214,146,.3)}
+.beta{background:rgba(247,168,59,.1);color:var(--amber);border:1px solid rgba(247,168,59,.3)}
+.lab{background:rgba(155,149,138,.1);color:var(--muted);border:1px solid var(--line)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 22px}
+.stat b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:2.4rem}
+.stat span{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.mesh{position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px 440px at 80% 10%,rgba(247,168,59,.12),transparent 65%),radial-gradient(600px 480px at 10% 95%,rgba(200,109,215,.08),transparent 65%)}
+.foot{position:absolute;bottom:26px;left:9vw;right:9vw;display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;color:var(--cream)}
+.logo b{color:var(--amber);font-weight:600}
+.avatarline{display:flex;gap:16px;align-items:flex-start}
+.av{flex:0 0 54px;width:54px;height:54px;border-radius:50%;background:rgba(247,168,59,.14);border:1px solid rgba(247,168,59,.45);display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--amber)}
+.hint{position:fixed;bottom:26px;right:26px;font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;z-index:5}
+@media print{
+  .slide{display:flex !important;page-break-after:always;width:100%;height:100vh}
+  .hint{display:none}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media(max-width:760px){.g3,.g4,.stats{grid-template-columns:1fr 1fr}.slide{padding:6vh 7vw;overflow-y:auto;justify-content:flex-start;padding-top:10vh}}
+</style>
+</head>
+<body>
+
+<!-- 1 · Title -->
+<section class="slide active">
+  <div class="mesh"></div>
+  <p class="kicker">Investor briefing · 2026</p>
+  <h1><span class="grad">Everfold Labs</span><br>Software products that compound.</h1>
+  <p class="sub">An AI-native product studio: <strong>12 complete products</strong> built end to end, <strong>9 live deployments</strong>, a clinical co-founder, and a US go-to-market lead — run at a fraction of conventional startup cost.</p>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>kaustubh.trt+labs@gmail.com</span></div>
+</section>
+
+<!-- 2 · The shift -->
+<section class="slide">
+  <p class="kicker">01 · The shift</p>
+  <h2>Building software just got <em class="grad">100× cheaper.</em> Judgment didn't.</h2>
+  <ul class="pts">
+    <li><span class="mono">A</span><span>AI-native development collapsed build cost: what took a funded team a quarter now takes <strong>one senior builder days</strong>.</span></li>
+    <li><span class="mono">B</span><span>The scarce assets are now <strong>taste, domain judgment and distribution</strong> — not headcount.</span></li>
+    <li><span class="mono">C</span><span>The rational response: run a <strong>portfolio</strong>. Many cheap, complete, sellable products beat one expensive bet.</span></li>
+  </ul>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>02 / 12</span></div>
+</section>
+
+<!-- 3 · The model -->
+<section class="slide">
+  <p class="kicker">02 · The model</p>
+  <h2>One build engine. Many products. Three ways each one pays.</h2>
+  <div class="grid g3">
+    <div class="cell"><span class="c">Build</span><h4>Ship complete</h4><p class="d">Idea → architecture → code → tests → deploy → marketing kit. Every product leaves the studio sellable, documented and handover-ready.</p></div>
+    <div class="cell"><span class="c">Validate</span><h4>Prove it live</h4><p class="d">Public deployments, real pilots and waitlists before a rupee of marketing spend. Kill fast, keep what compounds.</p></div>
+    <div class="cell"><span class="c">Monetize</span><h4>Three revenue doors</h4><p class="d">Subscriptions · white-label &amp; reseller licenses · outright asset sale. Each product is an option with multiple exits.</p></div>
+  </div>
+  <p class="sub"><strong>Everfold</strong> — because each product folds value over the last: shared engine, shared playbooks, compounding distribution.</p>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>03 / 12</span></div>
+</section>
+
+<!-- 4 · Portfolio -->
+<section class="slide">
+  <p class="kicker">03 · The portfolio</p>
+  <h2>Twelve products, built end to end.</h2>
+  <div class="grid g4">
+    <div class="cell"><span class="c">Healthtech</span><h4>Sneh TherapyOS</h4><p class="d">Therapy practice OS + AI companion</p><span class="chip live">Live pilot</span></div>
+    <div class="cell"><span class="c">AI · B2B</span><h4>SiteBot</h4><p class="d">White-label site support agent</p><span class="chip live">Live demo</span></div>
+    <div class="cell"><span class="c">SaaS</span><h4>FreelancerOS</h4><p class="d">10-module freelancer suite</p><span class="chip beta">Early access</span></div>
+    <div class="cell"><span class="c">SaaS</span><h4>SMB OS</h4><p class="d">Market-native invoicing, 6 languages</p><span class="chip beta">Early access</span></div>
+    <div class="cell"><span class="c">SaaS</span><h4>ChatCommerce OS</h4><p class="d">WhatsApp storefronts + UPI</p><span class="chip beta">Early access</span></div>
+    <div class="cell"><span class="c">Consumer</span><h4>NextPlay Pro</h4><p class="d">Game recs + price verdicts</p><span class="chip live">Live</span></div>
+    <div class="cell"><span class="c">Android</span><h4>ShelfScore</h4><p class="d">Food health scores + receipt audit</p><span class="chip beta">Waitlist</span></div>
+    <div class="cell"><span class="c">Android</span><h4>GlowScan</h4><p class="d">AI skin analysis, privacy-first</p><span class="chip beta">Private beta</span></div>
+    <div class="cell"><span class="c">Android</span><h4>CartCompare</h4><p class="d">Quick-commerce price optimizer</p><span class="chip lab">In the lab</span></div>
+    <div class="cell"><span class="c">Desktop</span><h4>ScribeGlass Pro</h4><p class="d">Local-first AI meeting notes</p><span class="chip beta">Early access</span></div>
+    <div class="cell"><span class="c">Desktop</span><h4>Snapline</h4><p class="d">Screenshot tool, bundled</p><span class="chip beta">With F-OS</span></div>
+    <div class="cell"><span class="c">AI Platform</span><h4>AI OS</h4><p class="d">Personal AI operating system</p><span class="chip lab">In the lab</span></div>
+  </div>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>04 / 12</span></div>
+</section>
+
+<!-- 5 · Sneh spotlight -->
+<section class="slide">
+  <p class="kicker">04 · Spotlight</p>
+  <h2>Sneh TherapyOS — <em class="grad">a clinical moat.</em></h2>
+  <ul class="pts">
+    <li><span class="mono">01</span><span><strong>The whole practice in one system:</strong> client app (Android + PWA), therapist studio, AI companion with crisis guardrails, journaling, wellness signals.</span></li>
+    <li><span class="mono">02</span><span><strong>Live pilot with real clients</strong>, run by co-founder Snehal Saraf — a practicing psychotherapist who designs every clinical flow. Pure-tech competitors can't copy this.</span></li>
+    <li><span class="mono">03</span><span><strong>B2B built in:</strong> employer/EAP module with anonymized wellbeing dashboards, insurance superbills, org join codes — the enterprise revenue path exists in the product today.</span></li>
+    <li><span class="mono">04</span><span><strong>Unit economics engineered:</strong> tiered AI quotas hold AI cost under 2% of subscription revenue. English · Hindi · Arabic.</span></li>
+  </ul>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>05 / 12</span></div>
+</section>
+
+<!-- 6 · SiteBot spotlight -->
+<section class="slide">
+  <p class="kicker">05 · Spotlight</p>
+  <h2>SiteBot — white-label AI agents, sold through agencies.</h2>
+  <ul class="pts">
+    <li><span class="mono">01</span><span><strong>Any business website becomes a 24/7 support agent</strong> — point it at a site, it learns every page; live demo deployed.</span></li>
+    <li><span class="mono">02</span><span><strong>TeamBrain mode</strong> turns internal documents into a private staff assistant — same engine, B2B price point.</span></li>
+    <li><span class="mono">03</span><span><strong>Channel model:</strong> productized packages plus an agency reseller license — agencies deploy under their own brand, we supply the engine and runbooks.</span></li>
+  </ul>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>06 / 12</span></div>
+</section>
+
+<!-- 7 · SMB suite spotlight -->
+<section class="slide">
+  <p class="kicker">06 · Spotlight</p>
+  <h2>The SMB suite — three doors into the same customer.</h2>
+  <div class="grid g3">
+    <div class="cell"><span class="c">FreelancerOS</span><h4>Run the business</h4><p class="d">Invoices, CRM, proposals, contracts, time — plus a bring-your-own-key AI layer. Snapline bundled with every plan.</p></div>
+    <div class="cell"><span class="c">SMB OS</span><h4>Get paid locally</h4><p class="d">Invoicing that speaks each market's tax language: GST/UPI, M-Pesa, 1099/Stripe — six languages, offline-first with sync.</p></div>
+    <div class="cell"><span class="c">ChatCommerce OS</span><h4>Sell where chat happens</h4><p class="d">WhatsApp-native storefronts with UPI checkout and cart recovery for D2C brands, Hindi + English.</p></div>
+  </div>
+  <p class="sub">Independent professionals and small businesses — India, Africa, USA — one studio playbook, cross-sold.</p>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>07 / 12</span></div>
+</section>
+
+<!-- 8 · Traction -->
+<section class="slide">
+  <p class="kicker">07 · Traction &amp; proof</p>
+  <h2>Everything here <em class="grad">actually runs.</em></h2>
+  <div class="stats">
+    <div class="stat"><b>12</b><span>Products end to end</span></div>
+    <div class="stat"><b>9</b><span>Live deployments</span></div>
+    <div class="stat"><b>1</b><span>Clinical pilot, real clients</span></div>
+    <div class="stat"><b>300+</b><span>Automated tests green</span></div>
+  </div>
+  <ul class="pts" style="margin-top:22px">
+    <li><span class="mono">+</span><span>Every product ships with its own <strong>marketing kit</strong>: landing site, demo film, sales deck, launch plan.</span></li>
+    <li><span class="mono">+</span><span>Codebases are <strong>documented and handover-ready</strong> — each one is a sellable asset, not just a running app.</span></li>
+  </ul>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>08 / 12</span></div>
+</section>
+
+<!-- 9 · Business model -->
+<section class="slide">
+  <p class="kicker">08 · Business model</p>
+  <h2>Four revenue streams, one cost base.</h2>
+  <div class="grid g4">
+    <div class="cell"><span class="c">Recurring</span><h4>Subscriptions</h4><p class="d">SaaS tiers across Sneh, FreelancerOS, SMB OS, ChatCommerce OS.</p></div>
+    <div class="cell"><span class="c">Channel</span><h4>White-label licenses</h4><p class="d">Agencies and orgs deploy SiteBot &amp; co. under their own brand.</p></div>
+    <div class="cell"><span class="c">Services</span><h4>Productized deploys</h4><p class="d">Fixed-price pilots and deployments that convert to recurring plans.</p></div>
+    <div class="cell"><span class="c">Exits</span><h4>Asset sales</h4><p class="d">Clean, tested codebases with traction — acquirable individually.</p></div>
+  </div>
+  <p class="sub">The studio's cost base is nearly flat as products are added — that's the fold.</p>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>09 / 12</span></div>
+</section>
+
+<!-- 10 · Why we win -->
+<section class="slide">
+  <p class="kicker">09 · Why we win</p>
+  <h2>Velocity is the moat.</h2>
+  <ul class="pts">
+    <li><span class="mono">01</span><span><strong>Days, not quarters:</strong> a proven AI-native pipeline takes an idea to a deployed, tested, marketed product in days.</span></li>
+    <li><span class="mono">02</span><span><strong>Full-stack ownership:</strong> web, Android, AI backends, payments, i18n — no dependency on hiring plans.</span></li>
+    <li><span class="mono">03</span><span><strong>Domain moats where it matters:</strong> a practicing psychotherapist on the cap table for Sneh; US distribution led from inside the market.</span></li>
+    <li><span class="mono">04</span><span><strong>Portfolio compounding:</strong> shared engine, shared playbooks, shared learnings — every product makes the next one cheaper.</span></li>
+  </ul>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>10 / 12</span></div>
+</section>
+
+<!-- 11 · Team -->
+<section class="slide">
+  <p class="kicker">10 · Team</p>
+  <h2>Product. Clinic. Market.</h2>
+  <div class="grid g3">
+    <div class="cell"><div class="avatarline"><div class="av">KT</div><div><h4>Kaustubh Tripathi</h4><span class="c">Founder · Product &amp; Engineering</span></div></div><p class="d" style="margin-top:14px">Builds the entire portfolio end to end with an AI-native process. Growth &amp; category leadership background in consumer commerce.</p></div>
+    <div class="cell"><div class="avatarline"><div class="av">SS</div><div><h4>Snehal Saraf</h4><span class="c">Co-founder · Clinical Lead, Sneh</span></div></div><p class="d" style="margin-top:14px">Practicing psychotherapist. Designs and pilots every clinical flow in Sneh TherapyOS with real clients — the product's defensibility in person form.</p></div>
+    <div class="cell"><div class="avatarline"><div class="av">S</div><div><h4>Shubham</h4><span class="c">Co-founder · Head of US</span></div></div><p class="d" style="margin-top:14px">Leads US go-to-market: agency reseller partnerships for SiteBot and distribution for the SMB suite in the largest software market.</p></div>
+  </div>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>11 / 12</span></div>
+</section>
+
+<!-- 12 · Ask -->
+<section class="slide">
+  <div class="mesh"></div>
+  <p class="kicker">11 · The conversation</p>
+  <h2>Raising our first outside round to pour fuel on <em class="grad">distribution.</em></h2>
+  <ul class="pts">
+    <li><span class="mono">01</span><span>Scale the <strong>Sneh clinical pilot</strong> into paying practices and employer/EAP contracts.</span></li>
+    <li><span class="mono">02</span><span>Stand up the <strong>US channel</strong>: SiteBot agency resellers and SMB-suite distribution.</span></li>
+    <li><span class="mono">03</span><span>Keep the build engine shipping — the portfolio is the pipeline.</span></li>
+  </ul>
+  <p class="sub" style="font-size:1.2rem"><strong>kaustubh.trt+labs@gmail.com</strong> · everfold-site on GitHub Pages</p>
+  <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>12 / 12</span></div>
+</section>
+
+<div class="hint">← → NAVIGATE · P PRINT/PDF</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];let i=0;
+function show(n){i=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,k)=>s.classList.toggle('active',k===i))}
+addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')show(i+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')show(i-1);
+  if(e.key.toLowerCase()==='p'){e.preventDefault();print()}
+});
+addEventListener('click',e=>{if(!e.target.closest('a'))show(i+1)});
+</script>
+</body>
+</html>
