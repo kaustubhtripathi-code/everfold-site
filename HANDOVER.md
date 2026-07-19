@@ -8,14 +8,14 @@ Read this first. Built 2026-07-12 (one session: named the company, built the sit
 - **LIVE:** https://kaustubhtripathi-code.github.io/everfold-site/ (public repo `kaustubhtripathi-code/everfold-site`, Pages legacy build, main branch, root). Repo was renamed twice — old Pages paths do NOT redirect.
 - **Deploy = push to main.** Local preview: launch config `everfold-site` (python http.server :8178) in `~/.claude/.claude/launch.json`.
 
-## 2026-07-19 — honesty-copy pass (committed LOCAL `8ca8974`+`d315a31`, ⚠ NOT PUSHED = not live yet)
+## 2026-07-19 — honesty-copy pass (`8ca8974`+`d315a31`, PUSHED same day = LIVE on Pages)
 Claims brought in line with reality (the products are betas, revenue is a model not a fact):
 - deck.html:67 "13 complete products / 10 live deployments" → "13 products built end to end, 10 deployed as live betas"
 - pitch.html:83 "12 complete products and 9 live deployments" → "12 products built end to end and 9 deployed as live betas"
 - index.html:211 "validated live, scaled worldwide" → "deployed and validating"
 - pitch.html:65 "monetized through subscriptions and B2B contracts" (present tense = false revenue claim) → "built to monetize through…". The deck's four-revenue-STREAMS framing was deliberately kept (it's a model, labeled as such).
 - **KNOWN INCONSISTENCY, owner's call:** deck says 13 products/10 deployments, pitch says 12/9 — one of them is stale; reconcile before investor use. Also remember the PDF (`assets/Everfold-Investor-Deck.pdf`) is a SNAPSHOT of deck.html — regenerate after any deck edit (command in the Files table).
-- Pushing main deploys these copy changes publicly — the owner hasn't asked for that yet.
+- Pushed to main (owner-approved 2026-07-19) — the copy above is the live site now.
 
 ## Files
 | File | What |
