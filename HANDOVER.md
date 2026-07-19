@@ -14,7 +14,7 @@ Claims brought in line with reality (the products are betas, revenue is a model 
 - pitch.html:83 "12 complete products and 9 live deployments" → "12 products built end to end and 9 deployed as live betas"
 - index.html:211 "validated live, scaled worldwide" → "deployed and validating"
 - pitch.html:65 "monetized through subscriptions and B2B contracts" (present tense = false revenue claim) → "built to monetize through…". The deck's four-revenue-STREAMS framing was deliberately kept (it's a model, labeled as such).
-- **KNOWN INCONSISTENCY, owner's call:** deck says 13 products/10 deployments, pitch says 12/9 — one of them is stale; reconcile before investor use. Also remember the PDF (`assets/Everfold-Investor-Deck.pdf`) is a SNAPSHOT of deck.html — regenerate after any deck edit (command in the Files table).
+- ~~KNOWN INCONSISTENCY~~ **RESOLVED same day (owner asked):** pitch.html was the stale one (written pre-Personae) — hero "Twelve"→"Thirteen", velocity tile 12/9→13/10; index.html About §also had a stale "Twelve"→"Thirteen". All three surfaces now agree: **13 built / 10 live betas** (deck, pitch, homepage stats, About). The PDF snapshot was ALSO stale (built 07-12, predating the honesty edits) — regenerated from current deck.html via the msedge command and text-verified ("13 products built end to end, 10 deployed as live betas" present; old "complete products" overclaim absent). Rule stands: any deck.html edit ⇒ regenerate the PDF.
 - Pushed to main (owner-approved 2026-07-19) — the copy above is the live site now.
 
 ## Files
