@@ -25,7 +25,8 @@ Claims brought in line with reality (the products are betas, revenue is a model 
 | `deck.html` | **13-slide** HTML investor deck. ←/→ navigate, P = print (print CSS = 1 slide/page). Adding/removing a slide: re-run the renumber (footer page-nums = slide position `NN / 13`; kicker section-nums = sequential `NN · Label`) — a python regex pass, see the 2026-07-12 Personae commit. |
 | `assets/Everfold-Investor-Deck.pdf` | PDF export of deck.html. Regenerate after deck edits: `msedge --headless=new --disable-gpu --no-pdf-header-footer --landscape --print-to-pdf=<out> --virtual-time-budget=15000 file:///C:/dev/everfold-site/deck.html` |
 | `assets/everfold-pitch.mp4` | 68s 1080p Remotion pitch film (music + fonts baked). |
-| `products/{glowscan,cartcompare,scribeglass,ai-os}/index.html` | Product landing pages for products with no site of their own. glowscan = built here (original). The other three are COPIES of their kits' landings (CartCompare `site/index.html`, scribeglass-pro `marketing/index.html`, AI Os `marketing/website/index.html`) — when a source kit changes, re-copy + push. |
+| `assets/{glowscan,cartcompare,scribeglass,ai-os}-promo.mp4` | Product promo films, embedded on the four product pages below (added 2026-07-26). |
+| `products/{glowscan,cartcompare,scribeglass,ai-os}/index.html` | Product landing pages for products with no site of their own. glowscan = built here (original). The other three are COPIES of their kits' landings (CartCompare `site/index.html`, scribeglass-pro `marketing/index.html`, AI Os `marketing/website/index.html`) — when a source kit changes, re-copy + push. **⚠ Each of these four now carries a `<video>` block inserted after `</header>`. A blind re-copy from the source kit DELETES that block — re-add it, or add the embed to the source kit first.** |
 
 ## Pitch film (Remotion)
 Source lives in the shared renderer **`C:\Users\91851\OneDrive\Documents\Anitgravity\scribeglass-pro\marketing\video`**: `src/Everfold.jsx` + `src/everfold-entry.js` (isolated entry; ScribeGlass Root untouched). Music: `make_everfold_music.py` (numpy synth, license-free) → `public/everfold-music.mp3`.
@@ -39,6 +40,24 @@ Verify a render before shipping: ffmpeg frame extract (title ~6s, wall ~26s, tea
 4. Deck has NO fabricated raise amount ("first outside round") — the user sets numbers.
 5. Snapline: listed as "included with every FreelancerOS plan", NO download link (standing rule).
 6. Excluded from the catalogue on purpose: competitor-intel-d2c (stealth), trading tools (personal), ReviewLift.
+
+## 2026-07-26 — portfolio-wide video rebrand
+Every product film was moved onto one house look instead of thirteen unrelated ones.
+- **`src/brand.{jsx,tsx}`** — the shared kit (tokens, Fraunces/Sora/Space Mono loader, FoldMark,
+  Mesh, Fade, Kicker, Scene, **EndCard**) — is COPIED into each Remotion project, not published as
+  a package: they are separate npm projects with no workspace. Fix a bug in one ⇒ re-copy to all.
+  Canonical source of the tokens is still `everfold-site/index.html`'s `:root`.
+- Every film now closes on the same `EndCard` (fold mark → product → tagline → URL →
+  "AN EVERFOLD LABS PRODUCT"). That end card is what makes the portfolio read as one studio.
+- **Semantic colour was deliberately NOT rebranded** in three places, and should stay that way:
+  ShelfScore's traffic-light health score, CartCompare's green-means-cheapest, and the
+  WhatsApp-authentic bubbles inside ChatCommerce's phone mockup. Pushing those to house amber
+  destroys the meaning the scene is built on.
+- **GlowScan** got a film built from scratch (`src-glow/` in the shared renderer). It makes no
+  accuracy or dermatological claim on purpose — the fairness eval across skin tones has never
+  been run — and its sample score is labelled "SAMPLE RESULT". Do not "strengthen" that copy.
+- ScribeGlass's "zero bytes uploaded" line was **false** (the same scene offers Gemini/OpenAI/
+  Claude enhancement, which uploads the transcript) → now "notes stay on your disk".
 
 ## Design system (all surfaces incl. film + product pages)
 Fraunces (display) + Sora (body) + Space Mono (labels). Ink `#0B0C10`, cream `#F2EDE4`, amber `#F7A83B`, coral `#F06449`, grad amber→coral→violet. Fold mark = 3 stacked pills. Reveal animations use IntersectionObserver **with a rect-based above-fold fallback** (hidden preview tabs never fire IO — don't remove it).
