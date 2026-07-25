@@ -1,0 +1,16 @@
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# agent + tooling scratch (a /watch download once put 1.1 GB of video into a repo)
+watch-*/
+.claude/scratch/
+*.log
+
+# local secrets
+.env
+.env.local
