@@ -45,3 +45,16 @@ Fraunces (display) + Sora (body) + Space Mono (labels). Ink `#0B0C10`, cream `#F
 
 ## Verification conventions
 Preview screenshots time out in the embedded browser — verify via read_page / JS eval; resize to a real viewport first (hidden tab reports 0×0 and fakes overflow). After a push, curl the live URL for a content marker, and range-request mp4s (expect 206).
+
+## 2026-07-25 responsive pass
+- Mobile nav no longer deleted at <=900px — the five links + "Get in touch" collapse into a
+  `<details>` hamburger (zero JS, 51px tap targets).
+- Catalogue rows on mobile: the `grid-template-areas` had no `grid-area` on any child, so
+  the arrow auto-placed under the title. Rows now use explicit areas and the **category
+  label is restored** instead of being `display:none`d away.
+- `.rv` reveal animation got a 1200ms failsafe — 30 elements' visibility depended entirely
+  on IntersectionObserver firing. Content must never depend on an animation running.
+- Added a **"Everfold Suite" bundle card** at the end of the catalogue linking to
+  productivity-suite-site (rebranded from "Studio Stack" the same day). It is deliberately
+  a bundle card and **not** a 14th catalogue row, so the "13 products / 10 live" counts in
+  the stats band, deck.html and the pitch film stay accurate.

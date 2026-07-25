@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Sora:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
+:root{color-scheme:dark;
   --ink:#0B0C10;
   --panel:#11131A;
   --panel-2:#151823;
@@ -56,6 +56,12 @@ nav{
 .nav-links{display:flex;gap:28px;align-items:center}
 .nav-links a{font-size:.82rem;color:var(--muted);transition:color .2s}
 .nav-links a:hover{color:var(--cream)}
+
+/* mobile nav — native <details>, no JS */
+.menu{position:relative;display:flex}
+.menu>summary{display:none;list-style:none}
+.menu>summary::-webkit-details-marker{display:none}
+@media(min-width:901px){.menu::details-content{content-visibility:visible;block-size:auto}}
 .btn{
   display:inline-block;padding:10px 22px;border-radius:100px;
   font-size:.82rem;font-weight:500;letter-spacing:.02em;
@@ -125,6 +131,8 @@ h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,3.6vw,2.8
 
 /* product index */
 .index-sec{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.card.bundle{display:block;margin-top:36px;background:var(--panel-2);padding:32px 34px}
+.card.bundle h3{margin:10px 0 8px}
 .row{
   display:grid;grid-template-columns:64px 1fr auto auto 40px;gap:22px;align-items:center;
   padding:26px 10px;border-top:1px solid var(--line);transition:background .2s;
@@ -179,11 +187,33 @@ footer a{color:var(--muted)}footer a:hover{color:var(--cream)}
   .stat:nth-child(3){border-left:none}
   .bento,.tiles{grid-template-columns:1fr}
   .about-grid{grid-template-columns:1fr;gap:40px}
-  .row{grid-template-columns:1fr auto;grid-template-areas:"main chip" "meta go"}
-  .row .n{display:none}
-  .row .cat{display:none}
-  .nav-links a:not(.btn){display:none}
+  .row{grid-template-columns:1fr auto;grid-template-areas:"main chip" "cat cat";gap:8px 16px}
+  .row .n,.row .go{display:none}
+  .row>div{grid-area:main}
+  .row .cat{grid-area:cat}
+  .row .chip{grid-area:chip;align-self:start}
   header{padding-top:140px}
+
+  .menu>summary{
+    display:grid;place-items:center;width:44px;height:44px;cursor:pointer;
+    border:1px solid var(--line);border-radius:12px;color:var(--cream);
+  }
+  .menu>summary::after{
+    content:"";width:18px;height:2px;background:currentColor;border-radius:2px;
+    box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor;
+  }
+  .menu[open]>summary{border-color:var(--amber)}
+  .menu:not([open]) .nav-links{display:none}
+  .nav-links{
+    position:absolute;right:0;top:calc(100% + 14px);z-index:80;
+    flex-direction:column;align-items:stretch;gap:2px;
+    min-width:min(74vw,250px);padding:10px;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:16px;
+    box-shadow:0 26px 60px rgba(0,0,0,.55);
+  }
+  .nav-links a{padding:13px 14px;border-radius:10px;font-size:.95rem}
+  .nav-links a:not(.btn):hover{background:rgba(242,237,228,.06)}
+  .nav-links .btn{margin-top:6px;text-align:center}
 }
 </style>
 </head>
@@ -192,14 +222,17 @@ footer a{color:var(--muted)}footer a:hover{color:var(--cream)}
 <nav>
   <div class="wrap nav-in">
     <a class="logo" href="#">Everfold<span> Labs</span></a>
-    <div class="nav-links">
-      <a href="#flagship">Flagship</a>
-      <a href="#products">All products</a>
-      <a href="#work">Work with us</a>
-      <a href="#team">Team</a>
-      <a href="pitch.html">Investors</a>
-      <a class="btn" href="mailto:kaustubh.trt@gmail.com">Get in touch</a>
-    </div>
+    <details class="menu">
+      <summary aria-label="Open menu"></summary>
+      <div class="nav-links" onclick="this.parentElement.open=false">
+        <a href="#flagship">Flagship</a>
+        <a href="#products">All products</a>
+        <a href="#work">Work with us</a>
+        <a href="#team">Team</a>
+        <a href="pitch.html">Investors</a>
+        <a class="btn" href="mailto:kaustubh.trt@gmail.com">Get in touch</a>
+      </div>
+    </details>
   </div>
 </nav>
 
@@ -349,6 +382,13 @@ footer a{color:var(--muted)}footer a:hover{color:var(--cream)}
         <span class="cat">AI · Platform</span><span class="chip lab">In the lab</span><span class="go">→</span>
       </a>
     </div>
+
+    <a class="card bundle rv" href="https://kaustubhtripathi-code.github.io/studio-stack/" target="_blank" rel="noopener">
+      <span class="num">BUNDLE</span>
+      <h3>Everfold Suite</h3>
+      <p>Four of the above sold as one stack for freelancers — FreelancerOS, Snapline, ScribeGlass Pro and JARVIS, with suite pricing.</p>
+      <span class="card-cta">See the suite</span>
+    </a>
   </div>
 </section>
 
@@ -446,6 +486,8 @@ document.querySelectorAll('.rv').forEach((el,i)=>{
   el.style.transitionDelay=(i%4)*70+'ms';
   if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in');else io.observe(el);
 });
+// Failsafe: content must never depend on the animation running.
+setTimeout(()=>document.querySelectorAll('.rv:not(.in)').forEach(el=>{el.style.transition='none';el.classList.add('in')}),1200);
 </script>
 </body>
 </html>
