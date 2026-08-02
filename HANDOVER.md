@@ -104,6 +104,58 @@ pitch film embedded on that page has "thirteen" baked into the render, and bumpi
 alone would contradict the film playing beside it. Either re-render `everfold-pitch.mp4` and
 bump pitch.html to 14, or accept the surfaces disagreeing.
 
+## 2026-08-02 — Creator Studio added (15th product)
+**Creator Studio — for LinkedIn creators.** A writing cockpit sold as ONE self-contained HTML file
+that runs locally from disk: composer with a "…see more" fold preview (desktop + mobile),
+deterministic post score with tips, idea matrix from your content pillars, hook formulas,
+100-template vault, weekly planner that can import best posting days from the sibling product
+**LinkedIn Analytics Studio**, and optional AI drafting with the buyer's own Anthropic/OpenAI/Google
+key called straight from the browser. No server, no account, no subscription. One-time purchase.
+
+**Counts moved 14 → 15 built. "10 live" is UNCHANGED on purpose** — Creator Studio is a local-file
+product, not a deployment. Its chip everywhere is `beta` / "Launching soon", category "Local file".
+
+| File | Change |
+|---|---|
+| `products/creator-studio/index.html` | **New.** Adapted from the kit's landing at `C:\Users\91851\projects\linkedin-creator-studio\landing\index.html` — same "copy the kit's landing" convention as cartcompare/scribeglass/ai-os, so it keeps its own green design system rather than the house tokens. Added: canonical + og/twitter head block, the `<video>` right after `</header>`, the Everfold contact/attribution bar after `</footer>`. **A blind re-copy from the kit deletes all four — re-add them.** |
+| `products/creator-studio/creator-studio-promo.mp4` | Promo film, 6.15MB. Like Passfile's, it sits **next to its page, not in `assets/`** — `<video src="./creator-studio-promo.mp4">` with `poster="../../assets/og-image.png"`. Bench source: **`src-creatorstudio`** in the shared Remotion renderer. |
+| `index.html` | New catalogue row 15 → `products/creator-studio/`. Stats band `14`→`15` "Products built end to end". og+twitter description "Fourteen"→"Fifteen AI-first products". About §"Fourteen products from one engine"→"Fifteen". |
+| `deck.html` | Creator Studio cell added to the portfolio grid (no new slide, no renumber — still 13 slides). Slide h2 "Fourteen"→"Fifteen products", title-slide sub `14`→`15 products`, traction stat `14`→`15`, og/twitter "14-product"→"15-product". Plus the density tightening below. |
+| `assets/Everfold-Investor-Deck.pdf` | Re-exported per the recipe. 13 pages, 606,828 bytes. |
+| `sitemap.xml` | `products/creator-studio/` added at priority 0.7, matching the other product pages. |
+
+**Buy button is a `mailto:` until launch.** The kit's landing shipped `href="GUMROAD_URL_HERE"`. The
+product is not listed on a payment platform yet, so the button is
+`mailto:kaustubh.trt@gmail.com?subject=Creator%20Studio%20early%20access` labelled
+"Get early access — launching soon", with an HTML comment above it saying to swap in the Gumroad /
+Lemon Squeezy URL and restore the "Buy now — $49 one-time" label at listing time. Two adjacent lines
+that assumed a live checkout were softened to match (the sub-button line, and the cross-sell
+"same store page" line). Prices ($49 launch / $79 / $59 bundle) are unchanged from the kit.
+
+**`.btn-block` now sets `white-space:normal`.** `.btn` is `white-space:nowrap`; the longer
+early-access label made the full-width buy button's min-content width push the price card 35px past
+a 360px viewport. One declaration on the only `.btn-block` on the page fixes it at the root.
+
+**pitch.html deliberately left at 14.** `5cf7792` had just bumped it to "Fourteen" *and re-rendered
+`assets/everfold-pitch.mp4`* to match. Bumping the copy to 15 alone would contradict the film playing
+beside it again. Either re-render the pitch film and bump pitch.html to 15, or accept
+pitch (14) vs homepage/deck (15) disagreeing. **The old "Thirteen" drift is gone — this is a new,
+smaller one.**
+
+### PDF export: the portfolio slide had ZERO print headroom at 14 cells
+Adding the 15th cell pushed the last grid row 10px past the slide's content box at the print
+viewport (~734×975), which `overflow:hidden` would have clipped — the exact class of bug fixed on
+07-02, resurfacing because the 14-cell layout fit to the pixel. Tightened the scoped density block:
+`#portfolio .cell` padding `12px`→`10px` vertical, `#portfolio .grid` gap `10px`→`8px`.
+- Measured with a headless-Edge harness that reproduces the print layout: temporarily neutralise
+  `@media screen and (max-width:760px)` (print is *under* that breakpoint but the `screen and`
+  guard excludes it), force `.slide{display:flex}`, then compare every `.cell`'s bottom against
+  `#portfolio`'s content box. **`--window-size=734,975` yields a 880px-tall viewport in headless —
+  use `734,1070` to get a true 975px `clientHeight`, or the harness lies in your favour.**
+- After the fix: 0 cells overflowing at both 734 and 760 wide; PDF re-exported and read back with
+  `pypdf` — 13 pages, all 15 product names present on page 4, "Fifteen products" heading, no stale
+  `14 products` / `Fourteen products` / `14-product` anywhere.
+
 ### PDF export was silently rendering in the MOBILE layout (pre-existing bug, now fixed)
 Chrome's print viewport for this deck is roughly **734 × 975 CSS px**, i.e. *under* the
 `max-width:760px` breakpoint. So `@media(max-width:760px)` was applying to every PDF export:
