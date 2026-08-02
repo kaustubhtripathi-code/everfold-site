@@ -8,13 +8,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kaustubhtripathi-code.github.io/everfold-site/deck.html">
 <meta property="og:title" content="Everfold Labs — Investor Deck">
-<meta property="og:description" content="The Everfold Labs investor deck: portfolio, thesis, traction and the team behind a 13-product AI-native studio.">
+<meta property="og:description" content="The Everfold Labs investor deck: portfolio, thesis, traction and the team behind a 14-product AI-native studio.">
 <meta property="og:image" content="https://kaustubhtripathi-code.github.io/everfold-site/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Everfold Labs — Investor Deck">
-<meta name="twitter:description" content="The Everfold Labs investor deck: portfolio, thesis, traction and the team behind a 13-product AI-native studio.">
+<meta name="twitter:description" content="The Everfold Labs investor deck: portfolio, thesis, traction and the team behind a 14-product AI-native studio.">
 <meta name="twitter:image" content="https://kaustubhtripathi-code.github.io/everfold-site/assets/og-image.png">
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='14' y='62' width='72' height='12' rx='6' fill='%23F06449'/><rect x='24' y='42' width='52' height='12' rx='6' fill='%23F7A83B'/><rect x='34' y='22' width='32' height='12' rx='6' fill='%23F2EDE4'/></svg>">
@@ -50,6 +50,14 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
 .live{background:rgba(60,190,120,.12);color:#5AD692;border:1px solid rgba(90,214,146,.3)}
 .beta{background:rgba(247,168,59,.1);color:var(--amber);border:1px solid rgba(247,168,59,.3)}
 .lab{background:rgba(155,149,138,.1);color:var(--muted);border:1px solid var(--line)}
+/* Portfolio slide: 14 cells + heading must fit one 100vh slide and one printed page.
+   Print lays out at roughly 734x975 CSS px, which is tighter than any desktop screen —
+   verify a change here against the PDF, not the browser. */
+#portfolio h2{max-width:34ch;margin-bottom:12px}
+#portfolio .grid{gap:10px}
+#portfolio .cell{padding:12px 13px}
+#portfolio .cell .d{line-height:1.3}
+#portfolio .chip{margin-top:4px}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
 .stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:26px 22px}
 .stat b{display:block;font-family:'Fraunces',serif;font-weight:500;font-size:2.4rem}
@@ -66,7 +74,9 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
   .hint{display:none}
   body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
-@media(max-width:760px){.g3,.g4,.stats{grid-template-columns:1fr 1fr}.slide{padding:6vh 7vw;overflow-y:auto;justify-content:flex-start;padding-top:10vh}}
+/* `screen and` is load-bearing: Chrome's print viewport is under 760px, so without it the
+   PDF export rendered in the MOBILE layout and silently clipped the tail of the portfolio. */
+@media screen and (max-width:760px){.g3,.g4,.stats{grid-template-columns:1fr 1fr}.slide{padding:6vh 7vw;overflow-y:auto;justify-content:flex-start;padding-top:10vh}}
 </style>
 </head>
 <body>
@@ -76,7 +86,7 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
   <div class="mesh"></div>
   <p class="kicker">Investor briefing · 2026</p>
   <h1><span class="grad">Everfold Labs</span><br>Software products that compound.</h1>
-  <p class="sub">An AI-native product studio: <strong>13 products</strong> built end to end, <strong>10 deployed as live betas</strong>, a clinical co-founder, and a US go-to-market lead — run at a fraction of conventional startup cost.</p>
+  <p class="sub">An AI-native product studio: <strong>14 products</strong> built end to end, <strong>10 deployed as live betas</strong>, a clinical co-founder, and a US go-to-market lead — run at a fraction of conventional startup cost.</p>
   <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>kaustubh.trt@gmail.com</span></div>
 </section>
 
@@ -106,9 +116,9 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
 </section>
 
 <!-- 4 · Portfolio -->
-<section class="slide">
+<section class="slide" id="portfolio">
   <p class="kicker">03 · The portfolio</p>
-  <h2>Thirteen products, built end to end.</h2>
+  <h2>Fourteen products, built end to end.</h2>
   <div class="grid g4">
     <div class="cell"><span class="c">Healthtech</span><h4>Sneh TherapyOS</h4><p class="d">Therapy practice OS + AI companion</p><span class="chip live">Live pilot</span></div>
     <div class="cell"><span class="c">AI · B2B</span><h4>SiteBot</h4><p class="d">AI support agent for any site</p><span class="chip live">Live demo</span></div>
@@ -123,6 +133,7 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
     <div class="cell"><span class="c">Desktop</span><h4>ScribeGlass Pro</h4><p class="d">Local-first AI meeting notes</p><span class="chip beta">Early access</span></div>
     <div class="cell"><span class="c">Desktop</span><h4>Snapline</h4><p class="d">Screenshot tool, bundled</p><span class="chip beta">With F-OS</span></div>
     <div class="cell"><span class="c">AI Platform</span><h4>AI OS</h4><p class="d">Personal AI operating system</p><span class="chip lab">In the lab</span></div>
+    <div class="cell"><span class="c">SaaS · Compliance</span><h4>Passfile</h4><p class="d">Versioned EU/UK compliance records per SKU</p><span class="chip beta">Design partners</span></div>
   </div>
   <div class="foot"><span class="logo">Everfold<b> Labs</b></span><span>04 / 13</span></div>
 </section>
@@ -184,7 +195,7 @@ ul.pts .mono{color:var(--amber);font-size:.72rem;padding-top:4px}
   <p class="kicker">08 · Traction &amp; proof</p>
   <h2>Everything here <em class="grad">actually runs.</em></h2>
   <div class="stats">
-    <div class="stat"><b>13</b><span>Products end to end</span></div>
+    <div class="stat"><b>14</b><span>Products end to end</span></div>
     <div class="stat"><b>10</b><span>Live deployments</span></div>
     <div class="stat"><b>1</b><span>Clinical pilot, real clients</span></div>
     <div class="stat"><b>300+</b><span>Automated tests green</span></div>

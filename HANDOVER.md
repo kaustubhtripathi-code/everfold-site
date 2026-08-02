@@ -77,3 +77,59 @@ Preview screenshots time out in the embedded browser — verify via read_page / 
   productivity-suite-site (rebranded from "Studio Stack" the same day). It is deliberately
   a bundle card and **not** a 14th catalogue row, so the "13 products / 10 live" counts in
   the stats band, deck.html and the pitch film stay accurate.
+
+## 2026-08-02 — Passfile added (14th product) — NOT COMMITTED, orchestrator reviews
+**Passfile** = versioned per-SKU EU/UK compliance records for small consumer brands (GPSR).
+Private technical-file vault per SKU → Declaration of Conformity that cites each document by
+SHA-256 fingerprint → permanent public versioned record page with a QR for the packaging →
+gap / expired / superseded-standard alerts, plus a free no-signup readiness checker.
+
+**Counts moved 13 → 14 built. "10 live" is UNCHANGED on purpose** — Passfile is built but
+still on a private repo and not publicly deployed, so it is not a live deployment. Its chip
+everywhere is `beta` / "Design partners", and the page's status line reads
+"in design-partner onboarding".
+
+| File | Change |
+|---|---|
+| `index.html` | New catalogue row 14 → `products/passfile/` (same markup as rows 9–13). Stats band `13`→`14` "Products built end to end". og+twitter description "Thirteen"→"Fourteen AI-first products". About §"Thirteen products from one engine"→"Fourteen". |
+| `products/passfile/index.html` | **New.** Self-contained product page on the glowscan template (Fraunces/Sora/Space Mono, ink/cream/amber, `<video>` right after `</header>`). Sections: hero + the delisting problem, vault→DoC→public record/QR→versions, alerts, free readiness checker, honest status line, CTA. |
+| `products/passfile/passfile-promo.mp4` | Produced by the concurrent video agent. **Note: this film sits next to its page, not in `assets/` like the other four** — the `<video src>` is `./passfile-promo.mp4` with `poster="../../assets/og-image.png"`. |
+| `deck.html` | Passfile cell added to the portfolio grid (no new slide, no renumber — still 13 slides). Slide h2 "Thirteen"→"Fourteen products", title-slide sub `13`→`14 products`, traction stat `13`→`14`, og/twitter "13-product"→"14-product". Plus the print fix below. |
+| `assets/Everfold-Investor-Deck.pdf` | Re-exported per the recipe. 13 pages, 602,944 bytes. |
+| `sitemap.xml` | `products/passfile/` added at priority 0.7, matching the other four product pages. |
+
+**Not touched — needs a decision:** `pitch.html` still says "Thirteen products" / "13 products
+built end to end" (h1, velocity tile, three meta descriptions). It was left at 13 because the
+pitch film embedded on that page has "thirteen" baked into the render, and bumping the copy
+alone would contradict the film playing beside it. Either re-render `everfold-pitch.mp4` and
+bump pitch.html to 14, or accept the surfaces disagreeing.
+
+### PDF export was silently rendering in the MOBILE layout (pre-existing bug, now fixed)
+Chrome's print viewport for this deck is roughly **734 × 975 CSS px**, i.e. *under* the
+`max-width:760px` breakpoint. So `@media(max-width:760px)` was applying to every PDF export:
+2-column grids and `.slide{overflow-y:auto}`, which drops overflowing content from the PDF
+entirely. The committed PDF was therefore missing **ScribeGlass Pro, Snapline and AI OS** from
+the portfolio slide — it printed 10 of 13 products under a heading that said "Thirteen".
+- Fix: `@media(max-width:760px)` → **`@media screen and (max-width:760px)`**. One word; print
+  now uses the desktop layout, screen behaviour is byte-identical.
+- Follow-on: at 734×975 the 4-column grid of 14 cells still overflowed the slide, so the
+  portfolio slide carries a small scoped density block (`#portfolio` — tighter cell padding,
+  `.d` line-height, chip margin, and a wider `h2` max-width so the heading stays on one line).
+- **Verifying a deck change means checking the PDF, not the browser** — the print viewport is
+  narrower than any desktop screen, and text can be present in the PDF's content stream while
+  still being visually clipped. Render the PDF, then also screenshot the slide at 734×975.
+
+### Local verification run (2026-08-02)
+Measured in a headless Edge iframe harness at a true layout width (`--allow-file-access-from-files`):
+- `index.html` @375 and @1280 — `documentElement.scrollWidth == 375 / 1280`, no element
+  crosses the viewport edge, 14 catalogue rows, Passfile row resolves to `products/passfile/`,
+  first stat reads `14`, hamburger `<details>` visible at 375 and hidden at 1280 (zero-JS
+  mobile nav intact; the new row shows title + description + "SAAS · COMPLIANCE" + chip in the
+  `grid-template-areas` layout).
+- `products/passfile/index.html` @375 and @1280 — scrollWidth equals viewport, **0 overflowing
+  elements**, video resolves to `./passfile-promo.mp4` (0:51, poster shows), 2 mailto links,
+  no `+alias` present, disclaimer panel and footer render.
+- `deck.html` — PDF re-exported and checked slide by slide: 13 pages, and every slide's visible
+  text matches the HTML character-for-character (only difference is `text-transform:uppercase`).
+  All 14 products present on the portfolio slide; verified visually at both 734×975 (print) and
+  1280×800 (screen) with nothing clipped.
