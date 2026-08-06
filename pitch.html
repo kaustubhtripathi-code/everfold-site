@@ -49,7 +49,7 @@ h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(2.3rem,5.4vw,3.8
 video{width:100%;border-radius:18px;border:1px solid var(--line);display:block;background:#000}
 h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.8rem,3.4vw,2.5rem);margin-bottom:20px}
 section{padding:80px 0;border-top:1px solid var(--line)}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:34px}
 .tile{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px 26px}
 .tile h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.2rem;margin:12px 0 8px}
 .tile p{color:var(--muted);font-size:.88rem}
@@ -93,7 +93,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-s
     <h2>Why this studio, why now</h2>
     <div class="tiles">
       <div class="tile"><span class="role">Velocity</span><h3>Days, not quarters</h3><p>An AI-native pipeline takes an idea to a deployed, tested, marketed product in days — 15 products built end to end and 10 deployed as live betas prove the engine.</p></div>
-      <div class="tile"><span class="role">Moats</span><h3>Domain, not just code</h3><p>A practicing psychotherapist co-founds Sneh TherapyOS and pilots it with real clients; US distribution is led from inside the market.</p></div>
+      <div class="tile"><span class="role">Moats</span><h3>Domain, not just code</h3><p>Therapy OS was built and piloted against a practicing therapist’s real caseload; US distribution is led from inside the market.</p></div>
       <div class="tile"><span class="role">Portfolio</span><h3>Many shots, shared engine</h3><p>Each product reuses the last one's engine, playbooks and audience — the cost base stays flat while surface area compounds.</p></div>
     </div>
   </div>
@@ -104,7 +104,6 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-s
     <h2>Founders</h2>
     <div class="tiles">
       <div class="tile"><div class="avatar">KT</div><h3>Kaustubh Tripathi</h3><span class="role">Founder &amp; CMO · Product, Engineering, Growth</span><p>Builds the entire portfolio end to end and leads brand, growth and go-to-market as CMO. Marketing &amp; category leadership background in consumer commerce.</p></div>
-      <div class="tile"><div class="avatar">SS</div><h3>Snehal Saraf</h3><span class="role">Co-founder · Clinical Lead, Sneh</span><p>Practicing psychotherapist. Every clinical flow in Sneh TherapyOS — crisis guardrails, session model, client journeys — is designed and piloted by her with real clients.</p></div>
       <div class="tile"><div class="avatar">S</div><h3>Shubham</h3><span class="role">Co-founder · Head of US</span><p>Leads US go-to-market — agency reseller partnerships for SiteBot and distribution for FreelancerOS, SMB OS and ChatCommerce OS.</p></div>
     </div>
   </div>
@@ -113,7 +112,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-s
 <section style="text-align:center">
   <div class="wrap">
     <h2>Raising our first outside round.</h2>
-    <p class="lede">To scale the Sneh clinical pilot into paying practices and employer contracts, and to stand up the US channel. The build engine keeps shipping either way.</p>
+    <p class="lede">To take Therapy OS to paying practices and employer contracts, and to stand up the US channel. The build engine keeps shipping either way.</p>
     <a class="btn" href="mailto:kaustubh.trt@gmail.com?subject=Everfold%20Labs%20—%20investor%20conversation">kaustubh.trt@gmail.com</a>
   </div>
 </section>

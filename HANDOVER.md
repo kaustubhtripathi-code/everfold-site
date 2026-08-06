@@ -20,7 +20,7 @@ Claims brought in line with reality (the products are betas, revenue is a model 
 ## Files
 | File | What |
 |---|---|
-| `index.html` | Homepage: hero, stats (**13 products / 10 live**), flagship bento (SiteBot, Sneh, FreelancerOS, ChatCommerce, **Personae**), 13-row product catalogue (every row links to a LIVE site), mission tiles, Founders, About, contact. Self-contained; only external dep = Google Fonts. Catalogue rows are auto-renumbered by a python one-liner (regex on `<span class="n">`) — re-run after adding a row. |
+| `index.html` | Homepage: hero, stats (**13 products / 10 live**), flagship bento (SiteBot, Therapy OS, FreelancerOS, ChatCommerce, **Personae**), 13-row product catalogue (every row links to a LIVE site), mission tiles, Founders, About, contact. Self-contained; only external dep = Google Fonts. Catalogue rows are auto-renumbered by a python one-liner (regex on `<span class="n">`) — re-run after adding a row. |
 | `pitch.html` | Investor page: pitch film embed, why-now tiles, founders, the ask. |
 | `deck.html` | **13-slide** HTML investor deck. ←/→ navigate, P = print (print CSS = 1 slide/page). Adding/removing a slide: re-run the renumber (footer page-nums = slide position `NN / 13`; kicker section-nums = sequential `NN · Label`) — a python regex pass, see the 2026-07-12 Personae commit. |
 | `assets/Everfold-Investor-Deck.pdf` | PDF export of deck.html. Regenerate after deck edits: `msedge --headless=new --disable-gpu --no-pdf-header-footer --landscape --print-to-pdf=<out> --virtual-time-budget=15000 file:///C:/dev/everfold-site/deck.html` |
@@ -34,7 +34,8 @@ Re-render: `npx remotion render src/everfold-entry.js EverfoldPitch "C:\dev\ever
 Verify a render before shipping: ffmpeg frame extract (title ~6s, wall ~26s, team ~55s, CTA ~64s) + `volumedetect` on a mid-section (audio stream existing ≠ audio content). Google Fonts load via injected `<link>` + delayRender — works headless.
 
 ## Positioning rules (user-ordered, load-bearing)
-1. **Founders:** Kaustubh Tripathi — Founder & CMO (product, engineering, growth); **Snehal Saraf — Co-founder · Clinical Lead, Sneh** (practicing psychotherapist = the highlighted moat; "Co-founder", never "Founder"); **Shubham — Co-founder · Head of US** (surname unknown — ask the user before any doc needs it).
+1. **Founders:** Kaustubh Tripathi — Founder & CMO (product, engineering, growth); **Shubham — Co-founder · Head of US** (surname unknown — ask the user before any doc needs it).
+   **2026-08-01 — Snehal Saraf REMOVED.** She left the project. She is gone from index.html, deck.html and pitch.html (founder tiles, meta descriptions, About). The product is **"Therapy OS"**, never "Sneh" or "Sneh TherapyOS". No surface may claim a *current* clinical pilot or a practicing therapist on the team — the only honest form is **"built and piloted with practicing-therapist input"** (past tense). Chips moved "Live pilot" → "Live beta" for the same reason. Founder grids are now two-up: `.tiles` uses `auto-fit` on index/pitch, and deck.html's team slide uses a new `.g2`.
 2. **NO white-label offering, NO acquisition/exit/asset-sale framing.** Offers = Use / Partner / Back the mission. Revenue slide = subscriptions, B2B contracts, productized deploys, marketplace/affiliate. Ambition line: "a generational, AI-native software house — a portfolio serving 100 million businesses and consumers, built from India for the world."
 3. **Contact email = plain `kaustubh.trt@gmail.com` everywhere** — never +aliases.
 4. Deck has NO fabricated raise amount ("first outside round") — the user sets numbers.
@@ -103,6 +104,33 @@ built end to end" (h1, velocity tile, three meta descriptions). It was left at 1
 pitch film embedded on that page has "thirteen" baked into the render, and bumping the copy
 alone would contradict the film playing beside it. Either re-render `everfold-pitch.mp4` and
 bump pitch.html to 14, or accept the surfaces disagreeing.
+
+## 2026-08-01 — Snehal Saraf removed; "Sneh TherapyOS" → "Therapy OS" (NOT PUSHED)
+
+She left the project. Every surface that named her, or claimed a *current* clinical pilot, was
+changed. **The honesty rule: the only sanctioned phrasing is "built and piloted with
+practicing-therapist input" — past tense.** Nothing may imply a clinician is on the team today.
+
+| File | Change |
+|---|---|
+| `index.html` | Founder tile removed (2 founders left — `.tiles` switched to `repeat(auto-fit,minmax(260px,1fr))` so two tiles fill the row). og+twitter descriptions drop "co-founders Snehal Saraf (clinical)". About § "joined by co-founder Shubham (US)". Founders sub-head "Product, clinical practice and US go-to-market" → "Product and US go-to-market". Bento card + catalogue row 02: "Sneh TherapyOS" → "Therapy OS", pilot claim → therapist-input phrasing, chip **"Live pilot" → "Live beta"**. Mission tile B "programs on Sneh" → "on Therapy OS". Meta description product list renamed. |
+| `deck.html` | Team slide: her cell removed, `.grid g3` → **new `.g2`** (added next to `.g3`), h2 "Product. Clinic. Market." → "Product. Market." Spotlight slide 5 retitled to "Therapy OS" with point 02 rewritten to the therapist-input phrasing. Portfolio cell, both revenue cells, the thesis "domain moats" point and the ask slide's point 01 rebranded. |
+| `pitch.html` | Founder tile removed (`.tiles` → auto-fit, same as index). Moats tile and the ask lede rewritten off "the Sneh clinical pilot". |
+| `assets/Everfold-Investor-Deck.pdf` | Re-exported with the msedge recipe. **13 pages, 603,028 bytes.** Read back with pypdf: 0 "Snehal", 0 "Sneh TherapyOS", 0 "Clinical Lead", 0 "Live pilot"; team page 12 reads "Product. Market." with Kaustubh + Shubham only. |
+| `assets/everfold-pitch.mp4` | Re-rendered from the shared renderer. **68.05s, 1920×1080, 5,428,106 bytes**, audio present (`volumedetect` mid-section mean −20.6 dB). Frames checked at ~33s (spotlight = "Therapy OS — a clinical moat" / "Built and piloted with practicing-therapist input") and ~55s (team = two cards). |
+| shared renderer `src/Everfold.jsx` | `Sneh` scene component renamed `TherapyOs`; PRODUCTS row 1 → `['Therapy OS','Healthtech','LIVE BETA']`; TEAM row for her deleted and the team grid switched to `repeat(${TEAM.length},1fr)` with `maxWidth:1200` so it stays two-up. Lives at `C:\Users\91851\OneDrive\Documents\Anitgravity\scribeglass-pro\marketing\video` — **not** `C:\dev\scribeglass-pro`. |
+
+**Layout regression check (headless Chrome, `--allow-file-access-from-files`):** deck.html under
+`emulateMediaType("print")` at 734×975 — 13 slides, and the only `.cell` flagged as overflowing is
+byte-identical to the pre-change baseline (`git show HEAD:deck.html`), i.e. pre-existing, not new.
+index.html at 375 and 1280 — `scrollWidth` equals the viewport, 15 catalogue rows, and the only
+elements past the right edge are the five decorative `.glow` divs, again identical to baseline.
+
+**Counts untouched:** still 15 products / 10 live betas everywhere. Removing a founder changes no
+product count. "Live pilot" → "Live beta" on the Therapy OS chip does **not** change the "10 live"
+stat — the deployment is still live, it just is not a clinician-run pilot any more.
+
+**NOT PUSHED.** Public repo; the orchestrator reviews, then pushes.
 
 ## 2026-08-02 — Creator Studio added (15th product)
 **Creator Studio — for LinkedIn creators.** A writing cockpit sold as ONE self-contained HTML file
