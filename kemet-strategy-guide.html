@@ -1,0 +1,538 @@
+<title>Kemet War Scroll</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Chivo+Mono:wght@400;500&display=swap">
+<style>
+  /* ---------- tokens: dark-first (night over the Nile) ---------- */
+  :root {
+    --bg: #101627;
+    --bg-deep: #0b101d;
+    --surface: #182036;
+    --surface-2: #1f2a47;
+    --line: #2c3a5e;
+    --line-soft: #223050;
+    --ink: #eae0c8;
+    --ink-muted: #99a0b5;
+    --gold: #d9a441;
+    --gold-bright: #efc468;
+    --gold-ink: #0b101d;
+    --red: #d4553f;
+    --red-soft: rgba(212, 85, 63, .14);
+    --blue: #5b8fd9;
+    --blue-soft: rgba(91, 143, 217, .14);
+    --bone: #e8e2d3;
+    --bone-soft: rgba(232, 226, 211, .12);
+    --teal: #4fa8a0;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f3ecda;
+      --bg-deep: #eaddbe;
+      --surface: #fbf7ec;
+      --surface-2: #f1e8d2;
+      --line: #d5c8a6;
+      --line-soft: #e2d7ba;
+      --ink: #232a40;
+      --ink-muted: #6a6f84;
+      --gold: #a1751b;
+      --gold-bright: #8a6212;
+      --gold-ink: #fbf7ec;
+      --red: #b23a24;
+      --red-soft: rgba(178, 58, 36, .12);
+      --blue: #2f5fa8;
+      --blue-soft: rgba(47, 95, 168, .12);
+      --bone: #5c5748;
+      --bone-soft: rgba(92, 87, 72, .12);
+      --teal: #1f7a72;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f3ecda;
+    --bg-deep: #eaddbe;
+    --surface: #fbf7ec;
+    --surface-2: #f1e8d2;
+    --line: #d5c8a6;
+    --line-soft: #e2d7ba;
+    --ink: #232a40;
+    --ink-muted: #6a6f84;
+    --gold: #a1751b;
+    --gold-bright: #8a6212;
+    --gold-ink: #fbf7ec;
+    --red: #b23a24;
+    --red-soft: rgba(178, 58, 36, .12);
+    --blue: #2f5fa8;
+    --blue-soft: rgba(47, 95, 168, .12);
+    --bone: #5c5748;
+    --bone-soft: rgba(92, 87, 72, .12);
+    --teal: #1f7a72;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Alegreya Sans", "Gill Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: "Marcellus", "Palatino Linotype", Georgia, serif; font-weight: 400; text-wrap: balance; margin: 0; }
+  a { color: var(--gold); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  .prose { max-width: 66ch; }
+  .mono { font-family: "Chivo Mono", ui-monospace, "Cascadia Mono", monospace; }
+
+  .eyebrow {
+    font-family: "Chivo Mono", ui-monospace, monospace;
+    font-size: 12px; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+  }
+  .eyebrow::after { content: ""; height: 1px; width: 56px; background: var(--gold); opacity: .55; }
+
+  section { padding: 72px 0 12px; }
+  section > .wrap > h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 10px; }
+  .lede { color: var(--ink-muted); font-size: 19px; max-width: 62ch; margin: 0 0 34px; }
+  .lede strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- hero ---------- */
+  header.hero {
+    background:
+      radial-gradient(1100px 460px at 50% -60px, var(--surface-2), transparent 70%),
+      var(--bg-deep);
+    border-bottom: 1px solid var(--line-soft);
+    padding: 84px 0 0;
+    overflow: hidden;
+  }
+  .hero-kicker { justify-content: center; }
+  .hero-kicker::before { content: ""; height: 1px; width: 56px; background: var(--gold); opacity: .55; }
+  .hero h1 {
+    text-align: center;
+    font-size: clamp(56px, 11vw, 122px);
+    letter-spacing: .16em;
+    line-height: 1;
+    margin: 10px 0 4px;
+    text-indent: .16em; /* optically recenter the tracked caps */
+  }
+  .hero .sub {
+    text-align: center;
+    font-family: "Marcellus", Georgia, serif;
+    font-size: clamp(19px, 2.6vw, 26px);
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-indent: .34em;
+    margin: 0 0 26px;
+  }
+  .thesis {
+    max-width: 56ch; margin: 0 auto; text-align: center;
+    font-size: 20px; color: var(--ink-muted);
+  }
+  .thesis strong { color: var(--ink); }
+  .horizon { display: block; width: min(680px, 88%); margin: 34px auto 0; color: var(--gold); }
+  .statstrip {
+    border-top: 1px solid var(--line-soft);
+    margin-top: -1px;
+    background: color-mix(in srgb, var(--bg-deep) 60%, var(--bg));
+  }
+  .statstrip .wrap {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .stat { padding: 22px 18px; border-left: 1px solid var(--line-soft); }
+  .stat:first-child { border-left: 0; }
+  .stat b { display: block; font-family: "Marcellus", Georgia, serif; font-weight: 400; font-size: 30px; color: var(--gold); font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 14px; color: var(--ink-muted); letter-spacing: .04em; }
+
+  /* ---------- cards & grids ---------- */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    padding: 24px 24px 20px;
+  }
+  .card h3 { font-size: 22px; margin-bottom: 8px; }
+  .card p { margin: 0 0 10px; color: var(--ink-muted); }
+  .card p strong, .card li strong { color: var(--ink); }
+
+  /* fame-point ledger */
+  .ledger { margin-top: 8px; }
+  .ledger .card { padding-top: 20px; }
+  .ledger-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .ledger-head h3 { font-size: 21px; }
+  .token { flex: none; width: 26px; height: 26px; display: inline-block; background: var(--gold); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--gold-ink) 35%, var(--gold)); }
+  .token.round { border-radius: 50%; }
+  .token.square { border-radius: 3px; }
+  .ledger ul { list-style: none; margin: 0; padding: 0; }
+  .ledger li { padding: 10px 0; border-top: 1px solid var(--line-soft); display: flex; justify-content: space-between; gap: 16px; }
+  .ledger li em { font-style: normal; color: var(--ink-muted); font-size: 15px; text-align: right; flex: none; }
+  .ledger .note { font-size: 15px; color: var(--ink-muted); margin-top: 12px; }
+
+  /* pyramid action board */
+  .board { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 4fr); gap: 32px; align-items: start; }
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .prow { display: flex; gap: 8px; justify-content: center; align-items: center; width: 100%; position: relative; }
+  .rowtag {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    font-family: "Chivo Mono", monospace; font-size: 10.5px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-muted);
+  }
+  .pslot {
+    flex: 1; max-width: 132px; min-width: 0;
+    border: 1px dashed var(--line); border-radius: 5px;
+    background: var(--surface);
+    padding: 10px 6px; text-align: center;
+    font-family: "Chivo Mono", monospace; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .pslot.gold { border: 1px solid var(--gold); color: var(--gold); background: transparent; }
+  .prow-label { font-family: "Chivo Mono", monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin: 6px 0 2px; }
+  .rule-callout {
+    margin-top: 18px; border-left: 3px solid var(--gold);
+    background: var(--surface); border-radius: 0 6px 6px 0;
+    padding: 14px 18px; font-size: 16.5px;
+  }
+  .rule-callout b { color: var(--gold-bright); }
+
+  table.actions { width: 100%; border-collapse: collapse; font-size: 16.5px; }
+  table.actions th {
+    text-align: left; font-family: "Chivo Mono", monospace; font-size: 11.5px;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+    padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line);
+  }
+  table.actions td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  table.actions td:first-child { font-weight: 700; white-space: nowrap; }
+  table.actions td.cost { font-family: "Chivo Mono", monospace; font-size: 14.5px; white-space: nowrap; color: var(--gold-bright); }
+  table.actions td:last-child { color: var(--ink-muted); }
+  .table-scroll { overflow-x: auto; }
+
+  /* night strip */
+  .night { counter-reset: nstep; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .nstep { position: relative; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 6px; padding: 18px 18px 14px 18px; }
+  .nstep::before {
+    counter-increment: nstep; content: counter(nstep, upper-roman);
+    font-family: "Marcellus", Georgia, serif; font-size: 15px; color: var(--gold);
+    display: block; margin-bottom: 6px; letter-spacing: .1em;
+  }
+  .nstep b { display: block; font-size: 17px; margin-bottom: 4px; }
+  .nstep p { margin: 0; font-size: 15px; color: var(--ink-muted); }
+
+  /* battle */
+  .battle-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 26px; }
+  .bstep { background: var(--surface); border-top: 3px solid var(--gold); border-radius: 0 0 6px 6px; padding: 16px 16px 14px; }
+  .bstep b { display: block; font-family: "Marcellus", Georgia, serif; font-weight: 400; font-size: 19px; margin-bottom: 6px; }
+  .bstep p { margin: 0; font-size: 15px; color: var(--ink-muted); }
+  .formula {
+    background: var(--bg-deep); border: 1px solid var(--line-soft); border-radius: 6px;
+    padding: 20px 22px; font-family: "Chivo Mono", monospace; font-size: 15px;
+    color: var(--ink); overflow-x: auto; white-space: nowrap;
+  }
+  .formula .op { color: var(--ink-muted); }
+  .formula .hl { color: var(--gold-bright); }
+
+  /* color columns */
+  .colorcol { border-top: 4px solid var(--line); }
+  .colorcol.red { border-top-color: var(--red); background: linear-gradient(var(--red-soft), transparent 90px), var(--surface); }
+  .colorcol.white { border-top-color: var(--bone); background: linear-gradient(var(--bone-soft), transparent 90px), var(--surface); }
+  .colorcol.blue { border-top-color: var(--blue); background: linear-gradient(var(--blue-soft), transparent 90px), var(--surface); }
+  .colorcol .tag { font-family: "Chivo Mono", monospace; font-size: 11.5px; letter-spacing: .2em; text-transform: uppercase; }
+  .colorcol.red .tag { color: var(--red); }
+  .colorcol.white .tag { color: var(--bone); }
+  .colorcol.blue .tag { color: var(--blue); }
+  .colorcol ul { margin: 10px 0 0; padding-left: 18px; color: var(--ink-muted); font-size: 16px; }
+  .colorcol li { margin-bottom: 7px; }
+
+  /* openings */
+  .open-card .seq { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 14px; }
+  .chip {
+    font-family: "Chivo Mono", monospace; font-size: 12.5px; letter-spacing: .05em;
+    border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; color: var(--ink);
+    background: var(--surface-2); white-space: nowrap;
+  }
+  .chip.gold { border-color: var(--gold); color: var(--gold-bright); background: transparent; }
+  .open-card .verdict { font-size: 15px; color: var(--ink-muted); border-top: 1px solid var(--line-soft); padding-top: 10px; margin-top: 4px; }
+  .open-card .verdict b { color: var(--gold); }
+
+  /* doctrine */
+  .doctrine { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 28px; counter-reset: law; }
+  .law { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 18px 0 6px; border-top: 1px solid var(--line-soft); }
+  .law::before {
+    counter-increment: law; content: counter(law, upper-roman);
+    font-family: "Marcellus", Georgia, serif; font-size: 21px; color: var(--gold); line-height: 1.3;
+  }
+  .law h3 { font-size: 20px; margin-bottom: 5px; }
+  .law p { margin: 0; color: var(--ink-muted); font-size: 16.5px; }
+  .law p strong { color: var(--ink); }
+
+  /* mistakes */
+  .sins { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .sin { background: var(--surface); border: 1px solid var(--line-soft); border-left: 3px solid var(--red); border-radius: 4px; padding: 14px 14px 12px; }
+  .sin b { display: block; font-size: 16px; margin-bottom: 4px; }
+  .sin p { margin: 0; font-size: 14px; color: var(--ink-muted); }
+
+  footer {
+    margin-top: 84px; border-top: 1px solid var(--line-soft);
+    background: var(--bg-deep); padding: 34px 0 46px;
+    font-size: 14.5px; color: var(--ink-muted);
+  }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  footer .glyph { color: var(--gold); font-family: "Marcellus", Georgia, serif; letter-spacing: .3em; }
+
+  @media (max-width: 860px) {
+    .grid3, .night, .battle-flow { grid-template-columns: 1fr 1fr; }
+    .board { grid-template-columns: 1fr; }
+    .sins { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    body { font-size: 17px; }
+    .rowtag { display: none; }
+    .grid2, .grid3, .night, .battle-flow, .doctrine, .sins { grid-template-columns: 1fr; }
+    .statstrip .wrap { grid-template-columns: 1fr 1fr; }
+    .stat:nth-child(3) { border-left: 0; }
+    .stat { border-top: 1px solid var(--line-soft); }
+    .stat:nth-child(-n+2) { border-top: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero h1, .hero .sub, .thesis { animation: rise .7s ease-out both; }
+    .hero .sub { animation-delay: .08s; } .thesis { animation-delay: .16s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow hero-kicker">A field manual for the table</p>
+    <h1>KEMET</h1>
+    <p class="sub">Blood &amp; Sand</p>
+    <p class="thesis">This is not a game about building an empire. It is a game about <strong>spending blood for glory</strong> — and the ledger is rigged in favor of whoever swings first.</p>
+    <svg class="horizon" viewBox="0 0 680 120" fill="none" aria-hidden="true">
+      <circle cx="340" cy="52" r="26" stroke="currentColor" stroke-width="1.5" opacity=".9"/>
+      <path d="M60 110 L150 34 L240 110" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M225 110 L340 8 L455 110" stroke="currentColor" stroke-width="2"/>
+      <path d="M440 110 L530 34 L620 110" stroke="currentColor" stroke-width="1.5"/>
+      <line x1="0" y1="110" x2="680" y2="110" stroke="currentColor" stroke-width="1.5"/>
+      <g opacity=".7">
+        <circle cx="80" cy="24" r="1.6" fill="currentColor"/><circle cx="180" cy="12" r="1.2" fill="currentColor"/>
+        <circle cx="500" cy="16" r="1.4" fill="currentColor"/><circle cx="600" cy="30" r="1.7" fill="currentColor"/>
+        <circle cx="260" cy="30" r="1.1" fill="currentColor"/><circle cx="420" cy="26" r="1.2" fill="currentColor"/>
+      </g>
+    </svg>
+  </div>
+  <div class="statstrip">
+    <div class="wrap">
+      <div class="stat"><b>9 FP</b><span>Fame Points wins — checked at dawn</span></div>
+      <div class="stat"><b>5</b><span>action tokens per Day phase</span></div>
+      <div class="stat"><b>8</b><span>battle cards — play one, burn one</span></div>
+      <div class="stat"><b>0</b><span>points ever awarded for hiding</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="object">
+  <div class="wrap">
+    <p class="eyebrow">01 · The object</p>
+    <h2>Nine points, counted at dawn</h2>
+    <p class="lede">The victory check happens at the <strong>start of a Day phase</strong>: if you hold 9+ Fame Points and nobody holds more, you win on the spot. That timing is the whole endgame — what matters is not reaching 9, but <strong>holding 9 through one Night</strong>.</p>
+    <div class="grid2 ledger">
+      <div class="card">
+        <div class="ledger-head"><span class="token square" aria-hidden="true"></span><h3>Permanent — nobody can touch these</h3></div>
+        <ul>
+          <li>Win a battle <strong>as the attacker</strong> <em>1 FP, every time</em></li>
+          <li>Hold 2+ temples at Night <em>1 FP each Night</em></li>
+          <li>Sacrifice 2 units at the Sanctuary of All Gods <em>1 FP each Night</em></li>
+          <li>Certain high-level power tiles <em>varies</em></li>
+        </ul>
+        <p class="note">Square tokens. This is the aggressor's column — battles and temples. A player who never attacks locks themselves out of most of it.</p>
+      </div>
+      <div class="card">
+        <div class="ledger-head"><span class="token round" aria-hidden="true"></span><h3>Takeable — held only while defended</h3></div>
+        <ul>
+          <li>Each temple you control <em>1 FP</em></li>
+          <li>Each level-4 pyramid you control <em>1 FP</em></li>
+        </ul>
+        <p class="note">Round tokens change hands the moment control does. Read the table through this lens: a leader sitting on round points isn't winning — they're <strong>holding your points</strong>. One successful raid swings the score by two (they lose one, you gain one — plus the attacker's battle FP).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="day">
+  <div class="wrap">
+    <p class="eyebrow">02 · The day</p>
+    <h2>Five tokens, three rows, no mercy</h2>
+    <p class="lede">Each Day you place your 5 action tokens on your player board — a pyramid of spaces in three rows — resolving one action per turn around the table. Every prayer point (PP) is contested currency: the same pool pays for troops, marches, pyramids and tiles.</p>
+    <div class="board">
+      <div>
+        <div class="pyramid" role="img" aria-label="Player action board: a pyramid of action spaces in three rows, with a gold divine-power space at the apex">
+          <div class="prow"><div class="pslot gold">◆ divine power · gold token only</div></div>
+          <div class="prow"><div class="pslot">◇</div><div class="pslot">◇</div><span class="rowtag">row 3</span></div>
+          <div class="prow"><div class="pslot">◇</div><div class="pslot">◇</div><div class="pslot">◇</div><span class="rowtag">row 2</span></div>
+          <div class="prow"><div class="pslot">◇</div><div class="pslot">◇</div><div class="pslot">◇</div><div class="pslot">◇</div><span class="rowtag">row 1</span></div>
+          <p class="prow-label">your action board — 5 tokens go anywhere the rows allow</p>
+        </div>
+        <div class="rule-callout"><b>The law of the rows:</b> by the end of the Day, at least one token must sit in <b>every row</b>. You cannot spam your favorite action five times — plan the day as a whole, not turn by turn.</div>
+      </div>
+      <div class="table-scroll">
+        <table class="actions">
+          <tr><th>Action</th><th>Cost</th><th>What it buys</th></tr>
+          <tr><td>Pray</td><td class="cost">+2 PP</td><td>The engine. Boring, load-bearing.</td></tr>
+          <tr><td>Recruit</td><td class="cost">1 PP / unit</td><td>New units in your city districts. Troops max out at 5 units.</td></tr>
+          <tr><td>Move</td><td class="cost">free · +2 PP</td><td>March one troop (land or harbor hop) — plus an optional 2 PP teleport via pyramids and obelisks.</td></tr>
+          <tr><td>Raise pyramid</td><td class="cost">PP per level</td><td>Each level costs its number (level 3 costs 3). One action can climb several levels.</td></tr>
+          <tr><td>Buy power tile</td><td class="cost">PP = tile level</td><td>Needs a pyramid of the tile's color at that level or higher. Permanent power, first come first served.</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="night">
+  <div class="wrap">
+    <p class="eyebrow">03 · The night</p>
+    <h2>Where the harvest happens</h2>
+    <p class="lede">Night is the payout step — and the reason the <strong>end of the Day</strong> is the most violent moment in the game. Whoever holds the temples when the sun sets collects; simplified, in order:</p>
+    <div class="night">
+      <div class="nstep"><b>Offering</b><p>The Sanctuary of All Gods controller may sacrifice 2 units for 1 permanent FP.</p></div>
+      <div class="nstep"><b>The Delta</b><p>The Delta temple controller may sacrifice 1 unit for 5 PP.</p></div>
+      <div class="nstep"><b>Temple tribute</b><p>Hold 2+ temples: 1 permanent FP.</p></div>
+      <div class="nstep"><b>Adoration</b><p>Collect the PP printed on every temple you hold.</p></div>
+      <div class="nstep"><b>Prayers &amp; veterans</b><p>Everyone gains 2 PP; cash veteran tokens for PP, recruits or Divine Intervention cards.</p></div>
+      <div class="nstep"><b>Reset</b><p>Draw a DI card, take back your tokens, set the new turn order.</p></div>
+    </div>
+    <div class="rule-callout" style="margin-top:22px"><b>Turn order is a weapon.</b> Acting <b>last</b> in the day means you can snatch temples after everyone else is out of tokens — and hold them straight into the Night payout. Give up last position only to race someone to a specific power tile.</div>
+  </div>
+</section>
+
+<section id="battle">
+  <div class="wrap">
+    <p class="eyebrow">04 · Battle math</p>
+    <h2>Every battle pays someone</h2>
+    <p class="lede">Combat is a closed-fist card duel, not a dice roll — which means it can be <strong>counted</strong>, and counted battles are won before the figures touch.</p>
+    <div class="battle-flow">
+      <div class="bstep"><b>Commit</b><p>Each side secretly picks two of their remaining battle cards: one to play, one to burn. Eight cards total — what you burn today can't save you tomorrow.</p></div>
+      <div class="bstep"><b>Compare</b><p>Higher total strength wins. <strong>The defender wins ties</strong> — as the attacker, bring a margin, not a coin flip.</p></div>
+      <div class="bstep"><b>Bleed</b><p>Both sides take casualties regardless of who won: enemy damage minus your protection. Self-damage from the bloodthirsty cards always lands.</p></div>
+      <div class="bstep"><b>Spoils</b><p>Winning attacker: 1 permanent FP. Winning defender: 2 veteran tokens. The loser retreats — and still collects a veteran token.</p></div>
+    </div>
+    <div class="formula">
+      <span class="hl">strength</span> <span class="op">=</span> units in troop <span class="op">+</span> battle card <span class="op">+</span> power tiles <span class="op">+</span> creatures <span class="op">+</span> DI cards &nbsp;<span class="op">·</span>&nbsp; <span class="hl">casualties</span> <span class="op">=</span> enemy damage <span class="op">−</span> your protection
+    </div>
+    <p class="lede" style="margin-top:26px">The consolation economy is the game's quiet genius: losing a fight is <strong>never a disaster</strong>, only losing a fight you invested in. A 2-unit speed bump that dies on a temple costs 2 PP and earns a veteran token — while the attacker burned a battle card, took self-damage, and spent half their day getting there.</p>
+  </div>
+</section>
+
+<section id="colors">
+  <div class="wrap">
+    <p class="eyebrow">05 · The three colors</p>
+    <h2>Your pyramids are your tech tree</h2>
+    <p class="lede">Power tiles are permanent, unique, and gated by pyramid level — the level-4 tiles are the game-warping ones. Pick a <strong>main color by round two</strong> and commit; dabbling in all three buys you the weakest tile of each.</p>
+    <div class="grid3">
+      <div class="card colorcol red">
+        <span class="tag">Red</span>
+        <h3>The Blade</h3>
+        <p>Strength, cheaper attacks, battle rewards. Red converts fights into Fame directly.</p>
+        <ul>
+          <li>Take it if you intend to attack by round 2 — which you should.</li>
+          <li>Red tiles compound: +1 strength here, extra damage there, and suddenly even fights are landslides.</li>
+          <li>The tall red pyramid announces your plan. Good. Fear is tempo.</li>
+        </ul>
+      </div>
+      <div class="card colorcol white">
+        <span class="tag">White</span>
+        <h3>The Temple Economy</h3>
+        <p>Prayer income, discounts, recruitment and card efficiency. White makes every action cheaper.</p>
+        <ul>
+          <li>The best second color for almost any plan — engines don't win, but they fund whoever does.</li>
+          <li>Strong with a temple-holding game: stack Night income until 9 FP is a formality.</li>
+          <li>Danger: white feels productive while you quietly fall behind on board presence.</li>
+        </ul>
+      </div>
+      <div class="card colorcol blue">
+        <span class="tag">Blue</span>
+        <h3>The Wall &amp; the River</h3>
+        <p>Defense, resilience and mobility tricks. Blue makes attacking you a losing trade.</p>
+        <ul>
+          <li>Defenders win ties and earn double veterans — blue leans into both.</li>
+          <li>Ideal for holding round-token points: temples and level-4 pyramids you plan to keep.</li>
+          <li>Pure blue never scores; pair it with a plan that does.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rule-callout" style="margin-top:22px"><b>Tall pyramids are bait.</b> A level-4 pyramid pays 1 takeable FP — to whoever controls the district. Build tall only what you garrison, or you're financing someone else's dawn.</div>
+  </div>
+</section>
+
+<section id="openings">
+  <div class="wrap">
+    <p class="eyebrow">06 · Opening playbook</p>
+    <h2>Three ways to spend Day One</h2>
+    <p class="lede">Five tokens, one law of the rows, and a map where every temple starts unclaimed. The classic lines:</p>
+    <div class="grid3">
+      <div class="card open-card">
+        <h3>The Temple Rush</h3>
+        <div class="seq">
+          <span class="chip">Recruit</span><span class="chip">Move → temple</span><span class="chip">Pray</span><span class="chip">Move → temple</span><span class="chip">Pray</span>
+        </div>
+        <p>Plant troops on two temples before anyone contests. Night pays you PP and the 2-temple permanent FP immediately.</p>
+        <p class="verdict"><b>Best when</b> you act late in turn order and can land on temples as the day ends. Weakness: you've bought no tech.</p>
+      </div>
+      <div class="card open-card">
+        <h3>The Tech Spike</h3>
+        <div class="seq">
+          <span class="chip">Pray</span><span class="chip">Raise pyramid → 3</span><span class="chip gold">Buy L3 tile</span><span class="chip">Recruit</span><span class="chip">Move</span>
+        </div>
+        <p>Trade day-one board presence for a level-3 power tile nobody else can afford yet — a permanent edge every fight after.</p>
+        <p class="verdict"><b>Best when</b> a specific tile defines your plan and someone else might reach it first. Weakness: you enter Night poor and small.</p>
+      </div>
+      <div class="card open-card">
+        <h3>The Flex</h3>
+        <div class="seq">
+          <span class="chip">Pray</span><span class="chip">Recruit</span><span class="chip">Raise pyramid → 2</span><span class="chip gold">Buy L2 tile</span><span class="chip">Move → temple</span>
+        </div>
+        <p>One temple, one tile, one decent troop. Nothing spectacular, nothing wasted.</p>
+        <p class="verdict"><b>Best when</b> you're early in turn order or reading the table. Every plan above collapses into this one under pressure — that's fine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="doctrine">
+  <div class="wrap">
+    <p class="eyebrow">07 · Doctrine</p>
+    <h2>The eight laws of the aggressor</h2>
+    <div class="doctrine" style="margin-top:34px">
+      <div class="law"><div><h3>The ledger favors the attacker</h3><p>Every won attack is a <strong>permanent</strong> point. Plan for two or three battle FPs minimum — a 9-point game without them means finding nine elsewhere while everyone hits you.</p></div></div>
+      <div class="law"><div><h3>Tiles are forever, units are ammunition</h3><p>Units die; power tiles don't. When in doubt between a fifth unit and a tile, buy the tile — then spend the units it improves.</p></div></div>
+      <div class="law"><div><h3>Distance is fake</h3><p>Teleportation means everyone is 2 PP from your gates. Never feel safe, never feel far — and <strong>always bank 2 PP</strong> so the reverse is true.</p></div></div>
+      <div class="law"><div><h3>Strike at dusk</h3><p>Temples pay at Night. A temple taken on the day's last action is income; one taken on the first action is a donation to whoever takes it back.</p></div></div>
+      <div class="law"><div><h3>Lose on purpose</h3><p>Feed 2-unit troops, keep the stack. The loser collects a veteran token; the attacker burned cards and PP crossing the map. Sell every loss for full price.</p></div></div>
+      <div class="law"><div><h3>Count everyone's dawn</h3><p>The win check is at the start of the Day. Every Night, add up each rival's FP <strong>plus what they can hold until morning</strong>. If someone survives the Night at 9, the game is already over.</p></div></div>
+      <div class="law"><div><h3>The table taxes the leader</h3><p>Round tokens are removable. When someone hits 7–8, their temples and level-4 pyramids become everyone's business — each raid swings the race by two.</p></div></div>
+      <div class="law"><div><h3>Never fight fair</h3><p>Attack with a counted margin — tiles, creature, a held DI card — or with a purpose worth the loss. A coin-flip battle you initiated is a mistake even when you win it.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="sins">
+  <div class="wrap">
+    <p class="eyebrow">08 · The five sins</p>
+    <h2>How Kemet is lost</h2>
+    <div class="sins" style="margin-top:30px">
+      <div class="sin"><b>Turtling</b><p>Defense earns zero FP. The walls of a passive player protect their opponents' lead.</p></div>
+      <div class="sin"><b>Hoarding units</b><p>A 5-stack with no tiles loses to a 3-stack with two. Strength comes off the tableau, not the tray.</p></div>
+      <div class="sin"><b>Skipping the count</b><p>Losing to a dawn victory you could have raided the night before is the game's most common ending.</p></div>
+      <div class="sin"><b>Splashing colors</b><p>Three level-1 pyramids buy three weak tiles. One level-4 buys a monster.</p></div>
+      <div class="sin"><b>Fighting fair</b><p>Even odds mean the defender wins ties, keeps veterans, and stays home. Bring math or stay home yourself.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Based on the 2021 Matagot edition of <strong>Kemet: Blood and Sand</strong>. Night-phase steps simplified from the rulebook's nine; table your rulebook for exact wording. The Book of the Dead expansion adds a fourth (black) pyramid — the doctrine holds.</div>
+    <div class="glyph" aria-hidden="true">△ △ △</div>
+  </div>
+</footer>
