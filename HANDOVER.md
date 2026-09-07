@@ -238,3 +238,8 @@ Deployment: existing GitHub Pages source is `main`, repository root. Push trigge
 | App login, saved data, API, video or unrelated product breaks | Investigate that application's own deployment and handover. | These static favicon repairs changed no app code, media or database. No data restore is appropriate. |
 
 Before any reversal, preserve uncommitted work and inspect later changes. After a forward fix or rollback, rerun the local check, check the affected page in a browser, push without force, and confirm the Pages build SHA and live page. Never restore a database for this change.
+
+
+### Release receipt — 2026-09-07
+
+Pushed main `6b2b7c54596589246cb9b76670f89af60d7fbfa9`. GitHub Pages latest-build API confirmed this exact commit **built**, with no build error. Live browser checks confirmed headings, applied CSS, and SMB canonical links on the five repaired pages. This receipt is a later documentation-only commit; the built SHA above identifies the verified website content. Code rollback commits and symptom-specific instructions are in the preceding section.
