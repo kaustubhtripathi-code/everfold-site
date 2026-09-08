@@ -250,3 +250,7 @@ User authorized building this new service, adding it to Everfold and producing m
 Includes a fictional source and evidence-matched sample report, six-slide deck, two PDFs, social preview and silent 30-second square/widescreen promos. Private offline report editor and marketing working files are in C:/Users/91851/Documents/Codex/GPT 6 Astra/revenue-launch/, outside the site. CI now stages and checks PDF links. Fable 5.1 reviewed the design and implementation; schema/browser tests cover imports, backups, safe rendering, storage conflicts, corrupt drafts and mobile layout. PDFs rendered and inspected. Human client delivery time and market demand remain unvalidated.
 
 2026-09-08: User revised Fix Pack price to US$150. Website, sales deck/PDF, promo videos, social artwork and sales copy regenerated; original scope unchanged. Earlier US$300 launch record is historical.
+
+
+### Narrated demo replacement — 2026-09-08
+Replaces the silent 30-second promo with a 51.6-second Remotion walkthrough in widescreen and square. Actual offline editor screenshots use the fictional Harbor Bookkeeping sample. Includes synthetic spoken narration, burned-in sentence captions, US$150 pricing, and a new editor poster. The player uses controls, has audio enabled, and does not autoplay. Source and audio verification: hub revenue-launch/video/ and check-video.py. Release verification is recorded in the hub VERIFICATION.md.
