@@ -243,3 +243,8 @@ Before any reversal, preserve uncommitted work and inspect later changes. After 
 ### Release receipt — 2026-09-07
 
 Pushed main `6b2b7c54596589246cb9b76670f89af60d7fbfa9`. GitHub Pages latest-build API confirmed this exact commit **built**, with no build error. Live browser checks confirmed headings, applied CSS, and SMB canonical links on the five repaired pages. This receipt is a later documentation-only commit; the built SHA above identifies the verified website content. Code rollback commits and symptom-specific instructions are in the preceding section.
+
+
+### Landing Page Fix Pack — 2026-09-08
+User authorized building this new service, adding it to Everfold and producing marketing assets. Public page: products/landing-page-fix-pack/. Separate homepage service card leaves the 15-product catalogue unchanged. US$300 is an unvalidated asking price; enquiries use the existing public email, with scope/payment/cancellation agreed manually. No outreach or transactions performed.
+Includes a fictional source and evidence-matched sample report, six-slide deck, two PDFs, social preview and silent 30-second square/widescreen promos. Private offline report editor and marketing working files are in C:/Users/91851/Documents/Codex/GPT 6 Astra/revenue-launch/, outside the site. CI now stages and checks PDF links. Fable 5.1 reviewed the design and implementation; schema/browser tests cover imports, backups, safe rendering, storage conflicts, corrupt drafts and mobile layout. PDFs rendered and inspected. Human client delivery time and market demand remain unvalidated.

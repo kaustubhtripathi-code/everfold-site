@@ -8,7 +8,7 @@ from urllib.parse import unquote, urlsplit
 
 EXTENSIONS = {'.html', '.css', '.js', '.mjs', '.json', '.webmanifest', '.svg',
               '.png', '.jpg', '.jpeg', '.webp', '.gif', '.ico', '.mp4', '.webm',
-              '.mp3', '.wav', '.ogg', '.woff', '.woff2', '.ttf', '.xml', '.txt'}
+              '.mp3', '.wav', '.ogg', '.woff', '.woff2', '.ttf', '.xml', '.txt', '.pdf'}
 
 
 class References(html.parser.HTMLParser):
@@ -22,7 +22,7 @@ class References(html.parser.HTMLParser):
             self.refs.append(attrs['src'])
         if tag == 'link' and attrs.get('href'):
             self.refs.append(attrs['href'])
-        if tag == 'a' and attrs.get('href', '').split('?')[0].endswith('.html'):
+        if tag == 'a' and attrs.get('href', '').split('?')[0].endswith(('.html', '.pdf')):
             self.refs.append(attrs['href'])
         if attrs.get('poster'):
             self.refs.append(attrs['poster'])
