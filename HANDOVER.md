@@ -254,3 +254,7 @@ Includes a fictional source and evidence-matched sample report, six-slide deck, 
 
 ### Narrated demo replacement — 2026-09-08
 Replaces the silent 30-second promo with a 51.6-second Remotion walkthrough in widescreen and square. Actual offline editor screenshots use the fictional Harbor Bookkeeping sample. Includes synthetic spoken narration, burned-in sentence captions, US$150 pricing, and a new editor poster. The player uses controls, has audio enabled, and does not autoplay. Source and audio verification: hub revenue-launch/video/ and check-video.py. Release verification is recorded in the hub VERIFICATION.md.
+
+
+### Jarvis voice replacement — 2026-09-08
+User rejected the Windows desktop narration and requested the voice used in Jarvis. Verified Jarvis configuration selects Edge with default en-GB-RyanNeural; generated the same Ryan voice using its installed edge-tts runtime. Remotion scene lengths extended to preserve natural pace, approximately 55 seconds total. Updated source lives in hub revenue-launch/video/. No Jarvis settings changed.
